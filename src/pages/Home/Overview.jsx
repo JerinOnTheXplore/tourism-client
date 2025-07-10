@@ -10,7 +10,7 @@ const Overview = () => {
   }, []);
 
   return (
-    <section className="bg-gradient-to-br from-[#e0f4ff] via-[#f7fbff] to-[#fefcfb] py-36 px-4 lg:px-20">
+    <section className="bg-gradient-to-br from-[#e0f4ff] via-[#f7fbff] to-[#e0f4ff] py-36 px-4 lg:px-20">
       <div className="max-w-7xl mx-auto space-y-20">
         {/* Section Title */}
         <div data-aos="zoom-in" className="text-center">
@@ -50,7 +50,7 @@ const Overview = () => {
           </div>
 
           {/* Video */}
-          <div className="lg:w-1/2 shadow-lg rounded-xl overflow-hidden">
+          <div className="lg:w-1/2 shadow-lg transform hover:scale-105 transition duration-500 rounded-xl overflow-hidden">
             <iframe
               className="w-full h-64 sm:h-80 md:h-96 rounded-xl"
               src="https://www.youtube.com/embed/k8C949_CZUo"
@@ -68,7 +68,7 @@ const Overview = () => {
           data-aos="fade-left"
         >
           {/* Video */}
-          <div className="lg:w-1/2 shadow-lg rounded-xl overflow-hidden">
+          <div className="lg:w-1/2 shadow-lg transform hover:scale-105 transition duration-500 rounded-xl overflow-hidden">
             <iframe
               className="w-full h-64 sm:h-80 md:h-96 rounded-xl"
               src="https://www.youtube.com/embed/iIMJ_GHCr2Q"

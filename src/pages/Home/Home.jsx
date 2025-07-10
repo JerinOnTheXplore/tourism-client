@@ -1,13 +1,15 @@
 import React from 'react';
 import Banner from './Banner';
 import Overview from './Overview';
+import PackagesAndGuides from './PackagesAndGuides';
 
 
 const Home = () => {
     return (
         <div>
         <Banner></Banner>
-        <Overview></Overview>   
+        <Overview></Overview>
+        <PackagesAndGuides></PackagesAndGuides>   
         </div>
     );
 };
