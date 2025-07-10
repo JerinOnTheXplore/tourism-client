@@ -82,7 +82,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="bg-white shadow-sm sticky top-0 z-50 font-[Inter]">
+    <div className="bg-gradient-to-br from-[#e0f4ff] via-[#f7fbff] to-[#fefcfb] shadow-sm sticky top-0 z-50 font-[Inter]">
       <div className="navbar max-w-7xl mx-auto px-4 py-3 flex items-center justify-between relative">
         {/* 🔹 Hamburger Icon (left side on mobile) */}
         <div className="lg:hidden absolute left-4 top-3.5">
