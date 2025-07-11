@@ -28,7 +28,7 @@ const StoriesSection = () => {
     <div className="px-6 md:px-20 py-16 bg-gradient-to-br from-[#e0f4ff] via-white to-[#e0f4ff]">
       <div className="flex justify-between items-center mb-10">
         <h2 className="text-3xl font-bold text-slate-800 flex items-center gap-2">
-          <MdOutlineTravelExplore className="text-blue-600 text-4xl" /> Tourist Stories
+          <MdOutlineTravelExplore className="text-blue-600 text-4xl" /><span className="text-gray-700"> Tourist Stories</span>
         </h2>
         <Link
           to="/stories"

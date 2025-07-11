@@ -100,7 +100,7 @@ const Navbar = () => {
         <div className="flex justify-center flex-1">
           <Link to="/" className="flex items-center gap-2 text-2xl font-bold text-gray-700">
             <img src={logo} alt="logo" className="w-10 h-10 rounded-full" />
-            <span className="tracking-wider">ＴｏｕｒｉｓｍＦｌｏｗ</span>
+            <span className="tracking-wider text-2xl md:text-3xl font-sans">TOURISM FLOW</span>
           </Link>
         </div>
 

@@ -41,7 +41,8 @@ export const router = createBrowserRouter([
       {
         path:"/stories",
         element: <AllStories></AllStories>
-      }
+      },
+      
 
     ],
   },

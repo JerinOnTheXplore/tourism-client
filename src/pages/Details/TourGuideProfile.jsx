@@ -1,79 +1,103 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import Marquee from 'react-fast-marquee';
-import { MdTravelExplore } from 'react-icons/md';
-import { useParams } from 'react-router';
+// src/pages/TourGuideProfile.jsx
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router";
+import axios from "axios";
+import { MdOutlineTravelExplore } from "react-icons/md";
 
 const TourGuideProfile = () => {
-    const [guides, setGuides] = useState([]);
-    const [relatedPackages, setRelatedPackages] = useState([]);
-    const { id } = useParams();
-    useEffect(() => {
-      
-      axios.get("https://tourism-server-delta.vercel.app/api/guides")
-    .then((res) => {
-      console.log("Guides:", res.data);
-      setGuides(res.data);
-    });
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [guide, setGuide] = useState(null);
+  const [stories, setStories] = useState([]);
 
-  axios.get("https://tourism-server-delta.vercel.app/api/packages")
-    .then((res) => {
-      console.log("Related Packages:", res.data);
-      setRelatedPackages(res.data);
-    });
+  useEffect(() => {
+    if (id) {
+      // Fetch tour guide
+      axios
+        .get(`https://tourism-server-delta.vercel.app/api/guides/${id}`)
+        .then((res) => {
+          setGuide(res.data);
+
+          // Fetch guide's stories
+          axios
+            .get(`https://tourism-server-delta.vercel.app/api/stories/by-guide?email=${res.data.email}`)
+            .then((storyRes) => setStories(storyRes.data))
+            .catch((err) => console.error("Story fetch failed", err));
+        })
+        .catch((err) => console.error("Guide fetch failed", err));
+    }
   }, [id]);
+
+  if (!guide) {
     return (
-        <div>
-         {/* === Tour Guides Section === */}
-<div className="px-6 md:px-20 py-10">
-  <h2 className="text-2xl font-bold text-slate-700 mb-6 text-center flex items-center justify-center gap-2">
-    <MdTravelExplore className="text-blue-500 text-3xl" />
-    Meet Our Tour Guides
-  </h2>
-
-  <div className="bg-white rounded-xl shadow-inner py-6 px-3">
-    <Marquee pauseOnHover speed={50} gradient={true} gradientColor="#e0f4ff">
-      {guides.map((guide, idx) => (
-        <div
-          key={idx}
-          className="w-48 mx-4 bg-[#f5faff] p-4 rounded-lg shadow hover:shadow-lg transition-transform duration-300 text-center"
-        >
-          <img
-            src={guide.photo}
-            alt={guide.name}
-            className="w-full h-32 object-cover rounded-md mb-2"
-          />
-          <h3 className="text-base font-semibold text-gray-800">
-            {guide.name}
-          </h3>
-          <p className="text-sm text-gray-500">
-            {guide.experience} yrs experience
-          </p>
-        </div>
-      ))}
-    </Marquee>
-  </div>
-</div>
-
-
-      {/* === Related Packages Section === */}
-      <div className="px-6 md:px-20 py-10">
-        <h2 className="text-2xl font-bold text-slate-700 mb-6 text-center">🧳 You Might Also Like</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {relatedPackages.map((p, idx) => (
-            <div key={idx} className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition">
-              <img src={p.photo} alt={p.title} className="w-full h-48 object-cover" />
-              <div className="p-4">
-                <h3 className="text-lg font-semibold">{p.title}</h3>
-                <p className="text-sm text-gray-500 mb-2">{p.type}</p>
-                <p className="text-green-600 font-bold">{p.price} BDT</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>   
-        </div>
+      <div className="text-center py-32 text-xl font-bold text-blue-800">
+        Loading Guide Profile...
+      </div>
     );
+  }
+
+  return (
+    <div className="bg-gradient-to-br from-[#cde7f8] via-[#b5dcf3] to-[#a5d9e4]
+ min-h-screen px-6 md:px-20 py-16 text-white">
+      <div className="max-w-5xl mx-auto bg-gradient-to-br from-[#e0f4ff] via-[#f7fbff] to-[#fefcfb] text-slate-800 rounded-3xl shadow-2xl p-8 md:p-14">
+        <div className="flex flex-col md:flex-row gap-8 items-center">
+          <img
+            src={guide.image}
+            alt={guide.name}
+            className="w-44 h-44 rounded-full border-4 border-blue-300 shadow-lg object-cover"
+          />
+          <div>
+            <h1 className="text-3xl font-bold mb-2 text-[#4194cc]">{guide.name}</h1>
+            <p className="text-md text-gray-700 mb-1">
+              <strong>Email:</strong> {guide.email}
+            </p>
+            <p className="text-md text-gray-700 mb-1">
+              <strong>Phone:</strong> {guide.phone || "N/A"}
+            </p>
+            <p className="text-md text-gray-700">
+              <strong>Experience:</strong> {guide.experience || "Not Specified"}
+            </p>
+          </div>
+        </div>
+
+        {/* Stories Section */}
+        <div className="mt-12">
+          <h2 className="text-2xl font-bold text-blue-700 flex items-center gap-2 mb-6">
+            <MdOutlineTravelExplore className="text-3xl text-blue-500" /> <span className="text-[#4194cc]">Stories by {guide.name}</span>
+          </h2>
+
+          {stories.length === 0 ? (
+            <p className="text-gray-500 italic">This guide hasn’t added any stories yet.</p>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {stories.map((story, idx) => (
+                <div
+                  key={idx}
+                  className="bg-[#f0f8ff] p-5 rounded-xl shadow-md border-l-4 border-blue-400"
+                >
+                  <h3 className="text-lg font-semibold text-blue-800 mb-1">
+                    {story.touristName}'s Experience
+                  </h3>
+                  <p className="text-sm text-blue-600 font-medium mb-1">
+                    Package: {story.packageName}
+                  </p>
+                  <p className="text-gray-700 text-sm italic">"{story.story}"</p>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+       <div className="mt-12">
+        <button
+          onClick={() => navigate(-1)}
+          className="bg-white text-[#2a75b3] font-bold px-5 py-2 rounded-full shadow-md hover:bg-blue-100 transition"
+        >
+          ← Go Back
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default TourGuideProfile;

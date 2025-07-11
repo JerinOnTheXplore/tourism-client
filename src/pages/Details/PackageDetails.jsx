@@ -105,9 +105,17 @@ const handleBooking = () => {
       {/* ===== Gallery Section ===== */}
       {pkg.photos?.length > 0 && (
         <div className="px-6 md:px-20 py-10">
-          <h2 className="text-2xl font-bold mb-4 text-slate-700 flex items-center gap-2">
+          <div className="flex justify-between">
+            <h2 className="text-2xl font-bold mb-4 text-slate-700 flex items-center gap-2">
             <FaRegCalendarAlt className="text-blue-500" /> Tour Gallery
           </h2>
+          <button
+          onClick={() => navigate(-1)}
+          className="bg-white text-[#2a75b3] font-bold px-5 py-2 rounded-full shadow-md hover:bg-blue-100 transition mb-4"
+        >
+          ← Go Back
+        </button>
+          </div>
          <div className="bg-[#cbe7f4] p-4 sm:p-6 md:p-10 shadow-inner">
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-1 h-auto lg:h-[500px]">
     {/* Hero image */}
