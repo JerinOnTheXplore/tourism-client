@@ -13,11 +13,12 @@ import {
   FaSuitcaseRolling
 } from "react-icons/fa";
 import { Link } from "react-router";
+import Marquee from "react-fast-marquee";
+import { MdTravelExplore } from "react-icons/md";
 
 const PackagesAndGuides = () => {
   const [packages, setPackages] = useState([]);
   const [guides, setGuides] = useState([]);
-
   useEffect(() => {
     AOS.init({ duration: 800 });
   }, []);
@@ -83,37 +84,42 @@ const PackagesAndGuides = () => {
         </TabPanel>
 
         <TabPanel>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-8 gap-10">
-            {guides.map(guide => (
-              <div
-                key={guide._id}
-                className="relative text-center bg-gradient-to-br from-[#cceeff] via-[#e8f4ff] to-[#fdf7f4] backdrop-blur-md border border-white border-opacity-20  p-8 shadow-xl hover:scale-[1.02] transition-all duration-300"
-                data-aos="fade-up"
-              >
-                <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-blue-300 p-3 rounded-full shadow-lg">
-                  <FaUserTie className="text-white text-xl" />
-                </div>
-                <img
-                  src={guide.photo}
-                  alt={guide.name}
-                  className="w-28 h-28 object-cover rounded-full mx-auto mt-6 border-4 border-gray-500 shadow-lg"
-                />
-                <h4 className="text-xl font-semibold mt-4 text-slate-600">{guide.name}</h4>
-                <p className="text-sm text-gray-500 flex justify-center items-center gap-2 mt-1">
-                  <FaRegCalendarAlt className="text-slate-500 font-medium" /> {guide.experience} years experience
-                </p>
-                <p className="text-sm text-gray-600 mt-1 flex justify-center items-center gap-2">
-                  <FaGlobe className="text-gray-400" /> {guide.language}
-                </p>
-                <Link
-                  to={`/guides/${guide._id}`}
-                  className="inline-block mt-4 bg-slate-600 hover:bg-gray-500 text-white text-sm px-5 py-2  transition"
-                >
-                  View Profile
-                </Link>
-              </div>
-            ))}
-          </div>
+          <div className="px-6 md:px-20 py-10">
+  <h2 className="text-2xl font-bold text-slate-700 mb-6 text-center flex items-center justify-center gap-2">
+    <MdTravelExplore className="text-blue-500 text-3xl" />
+    Meet Our Tour Guides
+  </h2>
+
+  <div className="bg-white rounded-xl shadow-inner py-6 px-3">
+    <Marquee pauseOnHover speed={50} gradient={true} gradientColor="#e0f4ff">
+      {guides.map((guide, idx) => (
+        <div
+          key={idx}
+          className="w-48 mx-4 bg-[#f5faff] p-4 rounded-lg shadow hover:shadow-lg transition-transform duration-300 text-center"
+        >
+          <img
+            src={guide.photo}
+            alt={guide.name}
+            className="w-full h-32 object-cover rounded-md mb-2"
+          />
+          <h3 className="text-base font-semibold text-gray-800">
+            {guide.name}
+          </h3>
+          <p className="text-sm text-gray-500">
+            {guide.experience} yrs experience
+          </p>
+          <Link
+            to={`/guides/${guide._id}`}
+            className="inline-block mt-4 bg-slate-600 hover:bg-gray-500 text-white text-sm px-5 py-2  transition"
+            >
+            View Profile
+            </Link>
+        </div>
+      ))}
+    </Marquee>
+  </div>
+</div>
+
         </TabPanel>
       </Tabs>
     </section>
@@ -121,3 +127,9 @@ const PackagesAndGuides = () => {
 };
 
 export default PackagesAndGuides;
+{/* <Link
+                  to={`/guides/${guide._id}`}
+                  className="inline-block mt-4 bg-slate-600 hover:bg-gray-500 text-white text-sm px-5 py-2  transition"
+                >
+                  View Profile
+                </Link> */}

@@ -7,6 +7,8 @@ import About from "../pages/About/About";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import AuthLayout from "../layout/AuthLayout";
+import PackageDetails from "../pages/Details/PackageDetails";
+import TourGuideProfile from "../pages/Details/TourGuideProfile";
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +29,15 @@ export const router = createBrowserRouter([
         path: 'about',
         Component: About
       },
+      {
+        path: 'packages/:id',
+        Component: PackageDetails,
+      },
+      {
+        path: 'guides/:id',
+        Component: TourGuideProfile,
+      }
+
     ],
   },
   {
