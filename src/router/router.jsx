@@ -9,6 +9,7 @@ import Register from "../pages/Register/Register";
 import AuthLayout from "../layout/AuthLayout";
 import PackageDetails from "../pages/Details/PackageDetails";
 import TourGuideProfile from "../pages/Details/TourGuideProfile";
+import AllStories from "../pages/Home/AllStories";
 
 export const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ export const router = createBrowserRouter([
       {
         path: 'guides/:id',
         Component: TourGuideProfile,
+      },
+      {
+        path:"/stories",
+        element: <AllStories></AllStories>
       }
 
     ],

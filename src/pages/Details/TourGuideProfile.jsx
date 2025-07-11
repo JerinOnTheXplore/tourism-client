@@ -10,13 +10,13 @@ const TourGuideProfile = () => {
     const { id } = useParams();
     useEffect(() => {
       
-      axios.get("http://localhost:5000/api/guides")
+      axios.get("https://tourism-server-delta.vercel.app/api/guides")
     .then((res) => {
       console.log("Guides:", res.data);
       setGuides(res.data);
     });
 
-  axios.get("http://localhost:5000/api/packages")
+  axios.get("https://tourism-server-delta.vercel.app/api/packages")
     .then((res) => {
       console.log("Related Packages:", res.data);
       setRelatedPackages(res.data);

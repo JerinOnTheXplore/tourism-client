@@ -24,11 +24,11 @@ const PackagesAndGuides = () => {
   }, []);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/packages")
+    axios.get("https://tourism-server-delta.vercel.app/api/packages")
       .then(res => setPackages(res.data))
       .catch(err => console.error("Failed to load packages", err));
 
-    axios.get("http://localhost:5000/api/guides")
+    axios.get("https://tourism-server-delta.vercel.app/api/guides")
       .then(res => setGuides(res.data))
       .catch(err => console.error("Failed to load guides", err));
   }, []);

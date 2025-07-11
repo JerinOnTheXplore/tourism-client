@@ -42,7 +42,7 @@ const handleBooking = () => {
     status: "pending",
   };
 
-  axios.post("http://localhost:5000/api/bookings", bookingData)
+  axios.post("https://tourism-server-delta.vercel.app/api/bookings", bookingData)
     .then(() => {
       Swal.fire({
         icon: "success",
@@ -61,11 +61,11 @@ const handleBooking = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/packages/${id}`)
+      .get(`https://tourism-server-delta.vercel.app/api/packages/${id}`)
       .then((res) => setPkg(res.data))
       .catch((err) => console.error("Failed to fetch package details", err));
       
-      axios.get("http://localhost:5000/api/guides")
+      axios.get("https://tourism-server-delta.vercel.app/api/guides")
     .then((res) => {
       console.log("Guides:", res.data);
       setGuides(res.data);
