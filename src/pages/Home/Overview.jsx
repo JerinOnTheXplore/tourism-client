@@ -26,7 +26,7 @@ const Overview = () => {
         {/* First Row */}
         <div
           className="flex flex-col lg:flex-row items-center gap-10"
-          data-aos="fade-right"
+          data-aos="flip-right"
         >
           {/* Text */}
           <div className="lg:w-1/2 text-center lg:text-left space-y-4">
@@ -65,7 +65,7 @@ const Overview = () => {
         {/* Second Row */}
         <div
           className="flex flex-col-reverse lg:flex-row items-center gap-10"
-          data-aos="fade-left"
+          data-aos="flip-left"
         >
           {/* Video */}
           <div className="lg:w-1/2 shadow-lg transform hover:scale-105 transition duration-500 rounded-xl overflow-hidden">

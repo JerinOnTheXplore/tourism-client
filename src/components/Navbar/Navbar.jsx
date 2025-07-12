@@ -84,14 +84,14 @@ const Navbar = () => {
   return (
     <div className="bg-gradient-to-br from-[#e0f4ff] via-[#f7fbff] to-[#fefcfb] shadow-sm sticky top-0 z-50 font-[Inter]">
       <div className="navbar max-w-7xl mx-auto px-4 py-3 flex items-center justify-between relative">
-        {/* 🔹 Hamburger Icon (left side on mobile) */}
+        {/* Hamburger Icon (left side on mobile) */}
         <div className="lg:hidden absolute left-4 top-3.5">
           <button onClick={toggleDrawer} className="text-gray-600">
             <FaBars size={22} />
           </button>
         </div>
 
-        {/* 🔹 Left Nav (Desktop) */}
+        {/* Left Nav (Desktop) */}
         <div className="hidden lg:flex flex-1 justify-start">
           <ul className="menu menu-horizontal gap-5">{leftNavItems}</ul>
         </div>
@@ -104,7 +104,7 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* 🔹 Right Nav (Desktop) */}
+        {/* Right Nav (Desktop) */}
         <div className="hidden lg:flex flex-1 justify-end">
           <ul className="menu menu-horizontal items-center gap-5">
             {rightNavItems}
@@ -112,15 +112,15 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* 🔹 Mobile Drawer */}
+      {/* Mobile Drawer */}
       {isDrawerOpen && (
         <div className="fixed inset-0 z-40">
           <div className="absolute inset-0 bg-opacity-20 backdrop-brightness-50" onClick={toggleDrawer}></div>
 
           <div className="fixed top-0 left-0 w-72 h-full bg-white shadow-lg z-50 p-6 overflow-y-auto">
             <div className="flex justify-between items-center mb-6">
-              <Link to="/" onClick={toggleDrawer} className="text-lg font-bold text-gray-700">
-                ＴｏｕｒｉｓｍＦｌｏｗ
+              <Link to="/" onClick={toggleDrawer} className="text-lg font-bold font-sans text-gray-700">
+                TOURISM FLOW
               </Link>
               <button onClick={toggleDrawer}>
                 <IoClose size={28} className="text-gray-600" />
