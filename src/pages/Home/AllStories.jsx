@@ -1,15 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+
+const fetchAllStories = async () => {
+  const res = await axios.get("https://tourism-server-delta.vercel.app/api/stories/all");
+  return res.data;
+};
 
 const AllStories = () => {
-  const [stories, setStories] = useState([]);
+  const {
+    data: stories = [],
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["all-stories"],
+    queryFn: fetchAllStories,
+  });
 
-  useEffect(() => {
-    axios
-      .get("https://tourism-server-delta.vercel.app/api/stories/all")
-      .then((res) => setStories(res.data))
-      .catch((err) => console.error("Failed to fetch all stories", err));
-  }, []);
+  if (isLoading) return <div className="text-center py-10">Loading stories...</div>;
+  if (isError) return <div className="text-center py-10 text-red-500">Error: {error.message}</div>;
 
   return (
     <div className="px-6 md:px-20 py-16 min-h-screen bg-gradient-to-br from-[#d3edfa] via-white to-[#d3edfa]">

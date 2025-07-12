@@ -1,27 +1,48 @@
-
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { FacebookShareButton, FacebookIcon } from "react-share";
 import { MdPeopleAlt } from "react-icons/md";
 import useAuth from "../../hooks/useAuth";
 
+const fetchAllStories = async () => {
+  const res = await axios.get("https://tourism-server-delta.vercel.app/api/stories/all");
+  return res.data;
+};
 
 const Community = () => {
-  const [stories, setStories] = useState([]);
   const { user } = useAuth();
 
-  useEffect(() => {
-    axios
-      .get("https://tourism-server-delta.vercel.app/api/stories/all")
-      .then((res) => setStories(res.data))
-      .catch((err) => console.error("Error fetching community stories:", err));
-  }, []);
+  const {
+    data: stories = [],
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["all-stories"],
+    queryFn: fetchAllStories,
+  });
 
   const handleShare = () => {
     if (!user) {
       alert("Please login to share a story.");
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className="text-center py-32 text-xl font-bold text-blue-800">
+        Loading stories...
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="text-center py-32 text-xl font-bold text-red-600">
+        Failed to load community stories.
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen px-6 md:px-20 py-16 bg-gradient-to-br from-[#e0f4ff] via-[#f7fbff] to-[#e0f4ff]">

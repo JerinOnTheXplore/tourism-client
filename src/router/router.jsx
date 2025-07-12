@@ -10,6 +10,9 @@ import AuthLayout from "../layout/AuthLayout";
 import PackageDetails from "../pages/Details/PackageDetails";
 import TourGuideProfile from "../pages/Details/TourGuideProfile";
 import AllStories from "../pages/Home/AllStories";
+import DashboardLayout from "../layout/DashboardLayout";
+import ManageProfile from "../pages/Dashboard/ManageProfile";
+
 
 export const router = createBrowserRouter([
   {
@@ -58,4 +61,15 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path:"/dashboard",
+    element:<DashboardLayout>
+    </DashboardLayout>,
+    children:[
+      {
+        path:"profile",
+        element:<ManageProfile></ManageProfile>
+      }
+    ]
+  }
 ]);

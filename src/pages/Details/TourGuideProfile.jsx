@@ -1,34 +1,46 @@
-// src/pages/TourGuideProfile.jsx
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useNavigate, useParams } from "react-router";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { MdOutlineTravelExplore } from "react-icons/md";
+
+const fetchGuide = async (id) => {
+  const res = await axios.get(`https://tourism-server-delta.vercel.app/api/guides/${id}`);
+  return res.data;
+};
+
+const fetchStoriesByGuide = async (email) => {
+  const res = await axios.get(`https://tourism-server-delta.vercel.app/api/stories/by-guide?email=${email}`);
+  return res.data;
+};
 
 const TourGuideProfile = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [guide, setGuide] = useState(null);
-  const [stories, setStories] = useState([]);
 
-  useEffect(() => {
-    if (id) {
-      // Fetch tour guide
-      axios
-        .get(`https://tourism-server-delta.vercel.app/api/guides/${id}`)
-        .then((res) => {
-          setGuide(res.data);
+  // Fetch guide info
+  const {
+    data: guide,
+    isLoading: isGuideLoading,
+    isError: isGuideError,
+  } = useQuery({
+    queryKey: ["guide", id],
+    queryFn: () => fetchGuide(id),
+    enabled: !!id,
+  });
 
-          // Fetch guide's stories
-          axios
-            .get(`https://tourism-server-delta.vercel.app/api/stories/by-guide?email=${res.data.email}`)
-            .then((storyRes) => setStories(storyRes.data))
-            .catch((err) => console.error("Story fetch failed", err));
-        })
-        .catch((err) => console.error("Guide fetch failed", err));
-    }
-  }, [id]);
+  // Fetch stories by guide email 
+  const {
+    data: stories = [],
+    isLoading: isStoriesLoading,
+    isError: isStoriesError,
+  } = useQuery({
+    queryKey: ["guide-stories", guide?.email],
+    queryFn: () => fetchStoriesByGuide(guide.email),
+    enabled: !!guide?.email,
+  });
 
-  if (!guide) {
+  if (isGuideLoading || isStoriesLoading) {
     return (
       <div className="text-center py-32 text-xl font-bold text-blue-800">
         Loading Guide Profile...
@@ -36,9 +48,16 @@ const TourGuideProfile = () => {
     );
   }
 
+  if (isGuideError || isStoriesError) {
+    return (
+      <div className="text-center py-32 text-xl font-bold text-red-600">
+        Failed to load data. Please try again.
+      </div>
+    );
+  }
+
   return (
-    <div className="bg-gradient-to-br from-[#cde7f8] via-[#b5dcf3] to-[#a5d9e4]
- min-h-screen px-6 md:px-20 py-16 text-white">
+    <div className="bg-gradient-to-br from-[#cde7f8] via-[#b5dcf3] to-[#a5d9e4] min-h-screen px-6 md:px-20 py-16 text-white">
       <div className="max-w-5xl mx-auto bg-gradient-to-br from-[#e0f4ff] via-[#f7fbff] to-[#fefcfb] text-slate-800 rounded-3xl shadow-2xl p-8 md:p-14">
         <div className="flex flex-col md:flex-row gap-8 items-center">
           <img
@@ -63,7 +82,8 @@ const TourGuideProfile = () => {
         {/* Stories Section */}
         <div className="mt-12">
           <h2 className="text-2xl font-bold text-blue-700 flex items-center gap-2 mb-6">
-            <MdOutlineTravelExplore className="text-3xl text-blue-500" /> <span className="text-[#4194cc]">Stories by {guide.name}</span>
+            <MdOutlineTravelExplore className="text-3xl text-blue-500" />{" "}
+            <span className="text-[#4194cc]">Stories by {guide.name}</span>
           </h2>
 
           {stories.length === 0 ? (
@@ -88,7 +108,8 @@ const TourGuideProfile = () => {
           )}
         </div>
       </div>
-       <div className="mt-12">
+
+      <div className="mt-12 text-center">
         <button
           onClick={() => navigate(-1)}
           className="bg-white text-[#2a75b3] font-bold px-5 py-2 rounded-full shadow-md hover:bg-blue-100 transition"
