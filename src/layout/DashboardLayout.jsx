@@ -92,13 +92,18 @@ const DashboardLayout = () => {
             </Link>
           </li>
           <li>
-            <Link to="/dashboard/add-story" className="menu-link">
-              <FaPlus /> Add Story
+            <Link to="/dashboard/add-package" className="menu-link">
+              <FaPlus /> Add Package
             </Link>
           </li>
           <li>
-            <Link to="/dashboard/manage-stories" className="menu-link">
-              <FaClipboardList /> Manage Stories
+            <Link to="/dashboard/manage-users" className="menu-link">
+              <FaClipboardList /> Manage Users
+            </Link>
+          </li>
+          <li>
+            <Link to="/dashboard/manage-candidates" className="menu-link">
+              <FaClipboardList /> Manage Candidates
             </Link>
           </li>
         </>
@@ -148,7 +153,7 @@ const DashboardLayout = () => {
       </button>
 
       {/* Main Content */}
-      <main className="flex-1 p-6 md:p-10">
+      <main className="w-1/2 flex-1 p-6 md:p-10">
         <Outlet />
       </main>
     </div>

@@ -58,16 +58,18 @@ const PackageDetails = () => {
   // Handle Booking Submit
   const handleBooking = () => {
     if (!user) return navigate("/login");
+  const guide = guides.find(g => g.email === selectedGuide);
 
     const bookingData = {
       packageId: pkg._id,
       packageName: pkg.title,
-      touristName: user.displayName,
+      touristName: user.displayName || "Tourist",
       touristEmail: user.email,
       touristImage: user.photoURL,
       price: pkg.price,
       tourDate: selectedDate,
-      guideName: selectedGuide,
+      guideEmail: guide.email,
+      guideName: guide.name,
       status: "pending",
     };
 
@@ -272,8 +274,8 @@ const PackageDetails = () => {
                 Select Tour Guide
               </option>
               {guides.map((g, i) => (
-                <option key={i} value={g.name}>
-                  {g.name}
+                <option key={i} value={g.email}>
+                  {g.email}
                 </option>
               ))}
             </select>

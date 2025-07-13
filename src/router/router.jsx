@@ -12,6 +12,7 @@ import TourGuideProfile from "../pages/Details/TourGuideProfile";
 import AllStories from "../pages/Home/AllStories";
 import DashboardLayout from "../layout/DashboardLayout";
 import ManageProfile from "../pages/Dashboard/ManageProfile";
+import AssignedTours from "../pages/Dashboard/TourGuide/AssignedTours";
 
 
 export const router = createBrowserRouter([
@@ -69,6 +70,10 @@ export const router = createBrowserRouter([
       {
         path:"profile",
         element:<ManageProfile></ManageProfile>
+      },
+      {
+        path: "assigned-tours",
+        element: <AssignedTours></AssignedTours>
       }
     ]
   }
