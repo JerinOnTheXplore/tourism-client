@@ -16,6 +16,7 @@ import { Link } from "react-router";
 import Marquee from "react-fast-marquee";
 import { MdTravelExplore } from "react-icons/md";
 import { useEffect } from "react";
+import Loading from "../loading/Loading";
 
 const fetchPackages = async () => {
   const res = await axios.get("https://tourism-server-delta.vercel.app/api/packages");
@@ -44,7 +45,7 @@ const PackagesAndGuides = () => {
     isError: errorGuides,
   } = useQuery({ queryKey: ["guides"], queryFn: fetchGuides });
 
-  if (loadingPackages || loadingGuides) return <p className="text-center py-10">Loading...</p>;
+  if (loadingPackages || loadingGuides) return <p className="text-center py-10"><Loading/></p>;
   if (errorPackages || errorGuides) return <p className="text-center py-10 text-red-500">Failed to load data</p>;
 
   return (

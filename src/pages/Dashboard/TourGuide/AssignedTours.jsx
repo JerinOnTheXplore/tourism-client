@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
+import Loading from "../../loading/Loading";
 
 
 const AssignedTours = () => {
@@ -12,7 +13,9 @@ const AssignedTours = () => {
   const fetchAssignedTours = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`https://tourism-server-delta.vercel.app/api/assigned-tours/${user.email}`);
+      const res = await axios.get(
+        `https://tourism-server-delta.vercel.app/api/assigned-tours/${user.email}`
+      );
       setTours(res.data);
     } catch (err) {
       console.error(err);
@@ -30,7 +33,10 @@ const AssignedTours = () => {
 
   const handleUpdateStatus = async (id, newStatus) => {
     try {
-      await axios.patch(`https://tourism-server-delta.vercel.app/api/assigned-tours/${id}/status`, { status: newStatus });
+      await axios.patch(
+        `https://tourism-server-delta.vercel.app/api/assigned-tours/${id}/status`,
+        { status: newStatus }
+      );
       Swal.fire("Success", `Tour ${newStatus}`, "success");
       fetchAssignedTours();
     } catch (err) {
@@ -53,63 +59,68 @@ const AssignedTours = () => {
     });
   };
 
-  if (loading) return <p>Loading assigned tours...</p>;
+  if (loading) return <p className="text-center py-10"><Loading></Loading></p>;
 
   return (
-    <div className="w-full">
-  <h2 className="text-2xl font-bold mb-4 text-center text-gray-600">My Assigned Tours</h2>
-
-  {tours.length === 0 ? (
-    <p>No assigned tours found.</p>
-  ) : (
-    <div className="overflow-x-auto">
-      <table className="table table-zebra min-w-[900px]">
-        <thead>
-          <tr>
-            <th>Package Name</th>
-            <th>Tourist Name</th>
-            <th>Tour Date</th>
-            <th>Price</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {tours.map((tour) => (
-            <tr key={tour._id}>
-              <td>{tour.packageName}</td>
-              <td>{tour.touristName}</td>
-              <td>{new Date(tour.tourDate).toLocaleDateString()}</td>
-              <td>${tour.price}</td>
-              <td className={`font-semibold ${tour.status === "accepted" ? "text-green-600" : tour.status === "rejected" ? "text-red-600" : "text-yellow-600"}`}>
-                {tour.status}
-              </td>
-              <td>
-                <button
-                  className="btn btn-success btn-sm mr-2"
-                  disabled={tour.status !== "pending"}
-                  onClick={() => handleUpdateStatus(tour._id, "accepted")}
-                >
-                  Accept
-                </button>
-                {tour.status === "pending" && (
-                  <button
-                    className="btn btn-error btn-sm"
-                    onClick={() => handleReject(tour._id)}
+    <div className="p-4 md:p-8">
+      <h2 className="text-2xl font-bold mb-6 text-center"> My Assigned Tours</h2>
+      {tours.length === 0 ? (
+        <p className="text-center text-gray-600">No assigned tours found.</p>
+      ) : (
+        <div className="w-full overflow-x-auto">
+          <table className="min-w-[700px] w-full table-auto border border-gray-300">
+            <thead className="bg-gray-100 text-gray-700 text-sm">
+              <tr>
+                <th className="px-4 py-2 text-left whitespace-nowrap">Package Name</th>
+                <th className="px-4 py-2 text-left whitespace-nowrap">Tourist Name</th>
+                <th className="px-4 py-2 text-left whitespace-nowrap">Tour Date</th>
+                <th className="px-4 py-2 text-left whitespace-nowrap">Price</th>
+                <th className="px-4 py-2 text-left whitespace-nowrap">Status</th>
+                <th className="px-4 py-2 text-left whitespace-nowrap">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {tours.map((tour) => (
+                <tr key={tour._id} className="border-t">
+                  <td className="px-4 py-2">{tour.packageName}</td>
+                  <td className="px-4 py-2">{tour.touristName || "N/A"}</td>
+                  <td className="px-4 py-2">{new Date(tour.tourDate).toLocaleDateString()}</td>
+                  <td className="px-4 py-2">{tour.price} BDT</td>
+                  <td
+                    className={`px-4 py-2 font-semibold ${
+                      tour.status === "accepted"
+                        ? "text-green-600"
+                        : tour.status === "rejected"
+                        ? "text-red-600"
+                        : "text-yellow-600"
+                    }`}
                   >
-                    Reject
-                  </button>
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+                    {tour.status}
+                  </td>
+                  <td className="px-4 py-2 space-x-2">
+                    <button
+                      className="btn btn-success btn-sm"
+                      disabled={tour.status !== "pending"}
+                      onClick={() => handleUpdateStatus(tour._id, "accepted")}
+                    >
+                      Accept
+                    </button>
+                    {tour.status === "pending" && (
+                      <button
+                        className="btn btn-error btn-sm"
+                        onClick={() => handleReject(tour._id)}
+                      >
+                        Reject
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
-  )}
-</div>
-
-
   );
 };
 

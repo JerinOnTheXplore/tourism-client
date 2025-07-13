@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { MdOutlineTravelExplore } from "react-icons/md";
+import Loading from "../loading/Loading";
 
 const fetchGuide = async (id) => {
   const res = await axios.get(`https://tourism-server-delta.vercel.app/api/guides/${id}`);
@@ -43,7 +44,7 @@ const TourGuideProfile = () => {
   if (isGuideLoading || isStoriesLoading) {
     return (
       <div className="text-center py-32 text-xl font-bold text-blue-800">
-        Loading Guide Profile...
+        <Loading></Loading>
       </div>
     );
   }

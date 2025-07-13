@@ -4,6 +4,7 @@ import axios from "axios";
 import { FacebookShareButton, FacebookIcon } from "react-share";
 import { MdPeopleAlt } from "react-icons/md";
 import useAuth from "../../hooks/useAuth";
+import Loading from "../loading/Loading";
 
 const fetchAllStories = async () => {
   const res = await axios.get("https://tourism-server-delta.vercel.app/api/stories/all");
@@ -31,7 +32,7 @@ const Community = () => {
   if (isLoading) {
     return (
       <div className="text-center py-32 text-xl font-bold text-blue-800">
-        Loading stories...
+        <Loading></Loading>
       </div>
     );
   }

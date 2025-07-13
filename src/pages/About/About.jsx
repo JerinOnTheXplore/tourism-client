@@ -15,7 +15,7 @@ const About = () => {
         {/* Profile Card */}
         <div className="bg-blue-50 text-[#2a75b3] p-8 rounded-tr-4xl  rounded-br-2xl shadow-2xl mb-14 border-t-12 border-[#2a75b3] border-r-12">
           <img
-            src="https://i.ibb.co/W5zXXjw/profile-dev.jpg" // Replace with your photo if available
+            src="https://i.ibb.co/W5zXXjw/profile-dev.jpg" 
             alt="Developer"
             className="w-32 h-32 rounded-full mx-auto border-4 border-[#4194cc] mb-4 object-cover"
           />

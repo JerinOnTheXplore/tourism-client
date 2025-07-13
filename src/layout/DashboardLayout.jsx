@@ -14,6 +14,7 @@ import {
   FaSignOutAlt,
 } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
+import Loading from "../pages/loading/Loading";
 
 const DashboardLayout = () => {
   const { user, logOut } = useAuth();
@@ -23,7 +24,7 @@ const DashboardLayout = () => {
   if (loading)
     return (
       <div className="text-center py-32 font-bold text-blue-800">
-        Loading Dashboard...
+        <Loading/>
       </div>
     );
 
@@ -115,15 +116,15 @@ const DashboardLayout = () => {
     <div className="flex min-h-screen bg-gradient-to-br from-[#e0f4ff] via-white to-[#d3edfa]">
       {/* Sidebar */}
       <aside
-        className={`w-64 lg:block bg-gradient-to-br from-[#63aedc] via-[#4194cc] to-[#2a75b3] text-white p-6 transition-all ${
+        className={`w-4/9 md:w-64 lg:block bg-gradient-to-br from-[#63aedc] via-[#4194cc] to-[#2a75b3] text-white p-6 transition-all ${
           drawerOpen ? "block" : "hidden"
         }`}
       >
         <div className="flex gap-2 mt-10">
           <img className="w-10" src={logo} alt="" />
-          <h1 className="text-xl font-semibold ">TOURISM FLOW</h1>
+          <h1 className="text-lg md:text-xl font-semibold ">TOURISM FLOW</h1>
         </div>
-        <div className="text-2xl font-bold mb-10 flex items-center gap-2 mt-5">
+        <div className="text-xl md:text-2xl font-bold mb-10 flex items-center gap-2 mt-5">
           <MdDashboard className="text-white text-3xl" />
           <span className="tracking-widest">Dashboard</span>
         </div>
@@ -153,7 +154,7 @@ const DashboardLayout = () => {
       </button>
 
       {/* Main Content */}
-      <main className="w-1/2 flex-1 p-6 md:p-10">
+      <main className="w-5/9 md:w-full flex-1 p-6 md:p-10">
         <Outlet />
       </main>
     </div>

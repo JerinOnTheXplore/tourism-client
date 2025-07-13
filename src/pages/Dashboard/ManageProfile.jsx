@@ -3,6 +3,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import Loading from "../loading/Loading";
 
 const fetchProfile = async (email) => {
   const res = await axios.get(
@@ -65,7 +66,7 @@ const ManageProfile = () => {
   };
 
   if (isLoading || !form)
-    return <p className="text-center py-20 text-slate-600">Loading profile...</p>;
+    return <p className="text-center py-20 text-slate-600"><Loading/></p>;
 
   return (
     <div className="max-w-2xl mx-auto p-6 bg-white rounded-xl shadow-md mt-10 text-gray-800">

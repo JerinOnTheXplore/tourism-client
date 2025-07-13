@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import Loading from "../loading/Loading";
 
 const fetchAllStories = async () => {
   const res = await axios.get("https://tourism-server-delta.vercel.app/api/stories/all");
@@ -18,7 +19,7 @@ const AllStories = () => {
     queryFn: fetchAllStories,
   });
 
-  if (isLoading) return <div className="text-center py-10">Loading stories...</div>;
+  if (isLoading) return <div className="text-center py-10"><Loading/></div>;
   if (isError) return <div className="text-center py-10 text-red-500">Error: {error.message}</div>;
 
   return (

@@ -15,6 +15,7 @@ import useAuth from "../../hooks/useAuth";
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import { useQuery } from "@tanstack/react-query";
+import Loading from "../loading/Loading";
 
 const PackageDetails = () => {
   const { id } = useParams();
@@ -94,7 +95,7 @@ const PackageDetails = () => {
   if (isPackageLoading || isGuidesLoading)
     return (
       <p className="text-center text-gray-600 text-lg py-20">
-        Loading data...
+        <Loading></Loading>
       </p>
     );
   if (isPackageError || isGuidesError)
