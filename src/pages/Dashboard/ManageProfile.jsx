@@ -2,14 +2,16 @@ import { useEffect, useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import Swal from "sweetalert2";
-import useAuth from "../../hooks/useAuth";
-import Loading from "../loading/Loading";
 
-const fetchProfile = async (email) => {
-  const res = await axios.get(
-    `https://tourism-server-delta.vercel.app/api/users/role/${email}`
+import Loading from "../loading/Loading";
+import { useNavigate } from "react-router";
+import useAuth from "../../hooks/useAuth";
+
+const fetchUserData = async (email) => {
+  const userRes = await axios.get(
+    `https://tourism-server-delta.vercel.app/api/users/${email}`
   );
-  return res.data;
+  return userRes.data;
 };
 
 const updateProfile = async ({ email, updates }) => {
@@ -22,22 +24,26 @@ const updateProfile = async ({ email, updates }) => {
 
 const ManageProfile = () => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [isEditing, setIsEditing] = useState(false);
   const [form, setForm] = useState(null);
 
-  const { data: profile, isLoading } = useQuery({
+  const {
+    data: profile,
+    isLoading,
+  } = useQuery({
     queryKey: ["userProfile", user?.email],
     enabled: !!user?.email,
-    queryFn: () => fetchProfile(user.email),
+    queryFn: () => fetchUserData(user.email),
   });
 
   useEffect(() => {
     if (profile && user && !form) {
       setForm({
-        displayName: user.displayName,
+        displayName: profile.displayName || user.displayName || "",
         email: user.email,
-        photoURL: user.photoURL || "",
+        photoURL: profile.photoURL || user.photoURL || "",
         phone: profile.phone || "",
         role: profile.role || "tourist",
       });
@@ -65,12 +71,11 @@ const ManageProfile = () => {
     mutation.mutate({ email: user.email, updates: form });
   };
 
-  if (isLoading || !form)
-    return <p className="text-center py-20 text-slate-600"><Loading/></p>;
+  if (isLoading || !form) return <p className="text-center py-20 text-slate-600"><Loading /></p>;
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white rounded-xl shadow-md mt-10 text-gray-800">
-      <h2 className="text-2xl font-bold mb-6 text-slate-600 text-center">Manage Your Profile</h2>
+    <div className="max-w-3xl mx-auto p-6 mt-8 bg-white rounded-xl shadow-md text-gray-800">
+      <h2 className="text-3xl font-bold text-center mb-4">Welcome, {form.displayName}!</h2>
 
       <div className="flex flex-col items-center mb-6">
         <img
@@ -78,96 +83,79 @@ const ManageProfile = () => {
           alt="Profile"
           className="w-28 h-28 rounded-full border-4 border-blue-300 object-cover"
         />
-        <p className="text-blue-600 font-semibold mt-2">Role: {form.role}</p>
+        <p className="text-blue-600 font-semibold mt-2 capitalize">Role: {form.role}</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label className="text-sm font-semibold">Name</label>
-          <input
-            type="text"
-            name="displayName"
-            value={form.displayName}
-            onChange={handleChange}
-            disabled={!isEditing}
-            className="input input-bordered w-full"
-          />
-        </div>
+      {form.role === "admin" && (
+        <AdminStats />
+      )}
 
-        <div>
-          <label className="text-sm font-semibold">Email</label>
-          <input
-            type="email"
-            value={form.email}
-            disabled
-            className="input input-bordered w-full"
-          />
-        </div>
-
-        <div>
-          <label className="text-sm font-semibold">Photo URL</label>
-          <input
-            type="text"
-            name="photoURL"
-            value={form.photoURL}
-            onChange={handleChange}
-            disabled={!isEditing}
-            className="input input-bordered w-full"
-          />
-        </div>
-
-        <div>
-          <label className="text-sm font-semibold">Phone</label>
-          <input
-            type="text"
-            name="phone"
-            value={form.phone}
-            onChange={handleChange}
-            disabled={!isEditing}
-            className="input input-bordered w-full"
-          />
-        </div>
-
-        {/* Role update for admin */}
-        {profile?.role === "admin" && (
-          <div>
-            <label className="text-sm font-semibold">Role</label>
-            <select
-              name="role"
-              value={form.role}
-              onChange={handleChange}
-              disabled={!isEditing}
-              className="select select-bordered w-full"
-            >
-              <option value="tourist">Tourist</option>
-              <option value="tourGuide">Tour Guide</option>
-              <option value="admin">Admin</option>
-            </select>
-          </div>
-        )}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+        <InputField label="Name" name="displayName" value={form.displayName} handleChange={handleChange} disabled={!isEditing} />
+        <InputField label="Email" value={form.email} disabled={true} />
+        <InputField label="Photo URL" name="photoURL" value={form.photoURL} handleChange={handleChange} disabled={!isEditing} />
+        <InputField label="Phone" name="phone" value={form.phone} handleChange={handleChange} disabled={!isEditing} />
       </div>
 
       <div className="text-center mt-6">
         {isEditing ? (
           <>
-            <button onClick={handleUpdate} className="btn btn-success mr-2">
-              Save Changes
-            </button>
-            <button onClick={() => setIsEditing(false)} className="btn btn-outline">
-              Cancel
-            </button>
+            <button onClick={handleUpdate} className="btn btn-success mr-2">Save Changes</button>
+            <button onClick={() => setIsEditing(false)} className="btn btn-outline">Cancel</button>
           </>
         ) : (
-          <button
-            onClick={() => setIsEditing(true)}
-            className="btn bg-gray-600 text-white hover:bg-slate-700"
-          >
-            Edit Profile
-          </button>
+          <button onClick={() => setIsEditing(true)} className="btn bg-gray-600 text-white hover:bg-slate-700">Edit Profile</button>
         )}
       </div>
+
+      {form.role === "tourist" && (
+        <div className="text-center mt-6">
+          <button onClick={() => navigate("/join-as-guide")} className="btn btn-info">Apply For Tour Guide</button>
+        </div>
+      )}
     </div>
   );
 };
+
+const InputField = ({ label, name, value, handleChange, disabled }) => (
+  <div>
+    <label className="text-sm font-semibold">{label}</label>
+    <input
+      type="text"
+      name={name}
+      value={value}
+      onChange={handleChange}
+      disabled={disabled}
+      className="input input-bordered w-full"
+    />
+  </div>
+);
+
+const AdminStats = () => {
+  const [stats, setStats] = useState(null);
+
+  useEffect(() => {
+    axios.get("https://tourism-server-delta.vercel.app/api/admin-stats").then((res) => setStats(res.data));
+  }, []);
+
+  if (!stats) return <Loading />;
+
+  return (
+    <div className="bg-blue-50 p-4 rounded-lg shadow grid grid-cols-1 md:grid-cols-2 gap-4">
+      <Stat label="Total Payments" value={`৳ ${stats.totalPayments}`} />
+      <Stat label="Total Tour Guides" value={stats.totalTourGuides} />
+      <Stat label="Total Packages" value={stats.totalPackages} />
+      <Stat label="Total Clients" value={stats.totalTourists} />
+      <Stat label="Total Stories" value={stats.totalStories} />
+    </div>
+  );
+};
+
+const Stat = ({ label, value }) => (
+  <div className="p-4 border rounded bg-white shadow text-center">
+    <p className="text-lg font-semibold text-slate-700">{label}</p>
+    <p className="text-2xl font-bold text-blue-600 mt-1">{value}</p>
+  </div>
+);
 
 export default ManageProfile;

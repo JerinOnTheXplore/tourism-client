@@ -44,7 +44,9 @@ const AddStory = () => {
         packageName,
         story,
         images: uploadedImageUrls,
-        guideEmail: user.email,
+        email: user.email, 
+        touristName: user.displayName,     
+        touristImage: user.photoURL,
         createdAt: new Date().toISOString(),
       };
 
@@ -52,7 +54,7 @@ const AddStory = () => {
 
       if (res.data.success) {
         Swal.fire("Success", "Story added successfully!", "success");
-        navigate("/dashboard/manage-story");
+        navigate("/dashboard/manage-stories");
       }
     } catch (err) {
       console.error(err);

@@ -14,6 +14,8 @@ import DashboardLayout from "../layout/DashboardLayout";
 import ManageProfile from "../pages/Dashboard/ManageProfile";
 import AssignedTours from "../pages/Dashboard/TourGuide/AssignedTours";
 import AddStory from "../pages/Dashboard/Tourist/AddStory";
+import ManageStories from "../pages/Dashboard/Tourist/ManageStories";
+import UpdateStory from "../pages/Dashboard/TourGuide/UpdateStory";
 
 
 export const router = createBrowserRouter([
@@ -79,6 +81,14 @@ export const router = createBrowserRouter([
       {
         path: "add-story",
         element: <AddStory></AddStory>
+      },
+      {
+        path: "manage-stories",
+        element:<ManageStories></ManageStories>
+      },
+      {
+        path: "update-story/:id",
+        element:<UpdateStory></UpdateStory>
       }
     ]
   }
