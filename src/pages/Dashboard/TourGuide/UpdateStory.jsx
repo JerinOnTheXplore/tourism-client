@@ -136,7 +136,7 @@ const UpdateStory = () => {
           </div>
         </div>
 
-        <button onClick={handleUpdate} className="btn btn-success mt-6">
+        <button onClick={handleUpdate} className="btn bg-[#2a75b3] text-stone-50 mt-6">
           Save Changes
         </button>
       </div>

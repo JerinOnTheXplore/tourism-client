@@ -61,10 +61,10 @@ const ManageStories = () => {
               />
               <div>
                 <h3 className="font-bold">{story.touristName}</h3>
-                <p className="text-sm text-gray-500">{story.packageName}</p>
+                <p className="text-sm text-gray-500 font-bold">{story.packageName}</p>
               </div>
             </div>
-            <p className="text-gray-700 mb-3">{story.story.slice(0, 100)}...</p>
+            <p className="text-gray-700 font-semibold mb-3">{story.story.slice(0, 100)}...</p>
             <div className="grid grid-cols-2 gap-2 mb-4">
               {story.images.map((img, index) => (
                 <img

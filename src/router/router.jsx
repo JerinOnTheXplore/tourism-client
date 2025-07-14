@@ -16,6 +16,7 @@ import AssignedTours from "../pages/Dashboard/TourGuide/AssignedTours";
 import AddStory from "../pages/Dashboard/Tourist/AddStory";
 import ManageStories from "../pages/Dashboard/Tourist/ManageStories";
 import UpdateStory from "../pages/Dashboard/TourGuide/UpdateStory";
+import JoinAsTourGuide from "../pages/Dashboard/Tourist/JoinAsTourGuide";
 
 
 export const router = createBrowserRouter([
@@ -89,6 +90,10 @@ export const router = createBrowserRouter([
       {
         path: "update-story/:id",
         element:<UpdateStory></UpdateStory>
+      },
+      {
+        path:"join-guide",
+        element:<JoinAsTourGuide></JoinAsTourGuide>
       }
     ]
   }
