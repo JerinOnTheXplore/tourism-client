@@ -19,6 +19,7 @@ import UpdateStory from "../pages/Dashboard/TourGuide/UpdateStory";
 import JoinAsTourGuide from "../pages/Dashboard/Tourist/JoinAsTourGuide";
 import MyBookings from "../pages/Dashboard/Tourist/MyBookings";
 import PaymentPage from "../pages/Dashboard/Tourist/PaymentPage";
+import AddPackage from "../pages/Dashboard/Admin/AddPackage";
 
 
 export const router = createBrowserRouter([
@@ -104,6 +105,10 @@ export const router = createBrowserRouter([
       {
         path: "payment/:bookingId",
         element:<PaymentPage></PaymentPage>
+      },
+      {
+        path:"add-package",
+        element: <AddPackage></AddPackage>
       }
     ]
   }
