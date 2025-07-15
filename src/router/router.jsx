@@ -17,6 +17,8 @@ import AddStory from "../pages/Dashboard/Tourist/AddStory";
 import ManageStories from "../pages/Dashboard/Tourist/ManageStories";
 import UpdateStory from "../pages/Dashboard/TourGuide/UpdateStory";
 import JoinAsTourGuide from "../pages/Dashboard/Tourist/JoinAsTourGuide";
+import MyBookings from "../pages/Dashboard/Tourist/MyBookings";
+import PaymentPage from "../pages/Dashboard/Tourist/PaymentPage";
 
 
 export const router = createBrowserRouter([
@@ -94,6 +96,14 @@ export const router = createBrowserRouter([
       {
         path:"join-guide",
         element:<JoinAsTourGuide></JoinAsTourGuide>
+      },
+      {
+        path:"my-bookings",
+        element:<MyBookings></MyBookings>
+      },
+      {
+        path: "payment/:bookingId",
+        element:<PaymentPage></PaymentPage>
       }
     ]
   }

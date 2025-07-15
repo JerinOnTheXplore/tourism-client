@@ -53,6 +53,7 @@ const PackageDetails = () => {
         "https://tourism-server-delta.vercel.app/api/guides"
       );
       return res.data;
+      
     },
   });
 
@@ -81,14 +82,19 @@ const PackageDetails = () => {
       )
       .then(() => {
         Swal.fire({
-          icon: "success",
-          title: "Confirm your Booking",
-          html: `<a href='/my-bookings' class='text-blue-600 underline'>Go to My Bookings</a>`,
-        });
-      })
-      .catch(() => {
-        Swal.fire("Error", "Booking failed", "error");
+        icon: "success",
+        title: "Booking Confirmed!",
+        text: "Redirecting to your bookings...",
+        timer: 2000,
+        showConfirmButton: false,
+      }).then(() => {
+        navigate("/dashboard/my-bookings");
       });
+    })
+    .catch(() => {
+      Swal.fire("Error", "Booking failed", "error");
+    });
+      
   };
 
   // Loading/Error States

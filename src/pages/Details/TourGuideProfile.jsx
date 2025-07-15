@@ -30,7 +30,7 @@ const TourGuideProfile = () => {
     enabled: !!id,
   });
 
-  // Fetch stories by guide email 
+  // Fetch stories by guide email
   const {
     data: stories = [],
     isLoading: isStoriesLoading,
@@ -44,7 +44,7 @@ const TourGuideProfile = () => {
   if (isGuideLoading || isStoriesLoading) {
     return (
       <div className="text-center py-32 text-xl font-bold text-blue-800">
-        <Loading></Loading>
+        <Loading />
       </div>
     );
   }
@@ -62,7 +62,7 @@ const TourGuideProfile = () => {
       <div className="max-w-5xl mx-auto bg-gradient-to-br from-[#e0f4ff] via-[#f7fbff] to-[#fefcfb] text-slate-800 rounded-3xl shadow-2xl p-8 md:p-14">
         <div className="flex flex-col md:flex-row gap-8 items-center">
           <img
-            src={guide.image}
+            src={guide.photo}
             alt={guide.name}
             className="w-44 h-44 rounded-full border-4 border-blue-300 shadow-lg object-cover"
           />
@@ -83,7 +83,7 @@ const TourGuideProfile = () => {
         {/* Stories Section */}
         <div className="mt-12">
           <h2 className="text-2xl font-bold text-blue-700 flex items-center gap-2 mb-6">
-            <MdOutlineTravelExplore className="text-3xl text-blue-500" />{" "}
+            <MdOutlineTravelExplore className="text-3xl text-blue-500" />
             <span className="text-[#4194cc]">Stories by {guide.name}</span>
           </h2>
 

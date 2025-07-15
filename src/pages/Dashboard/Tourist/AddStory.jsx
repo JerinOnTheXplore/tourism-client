@@ -13,6 +13,7 @@ const AddStory = () => {
   const [packageName, setPackageName] = useState("");
   const [story, setStory] = useState("");
   const [images, setImages] = useState([]);
+  const [guideEmail, setGuideEmail] = useState("");
 
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
@@ -44,6 +45,7 @@ const AddStory = () => {
         packageName,
         story,
         images: uploadedImageUrls,
+        guideEmail,
         email: user.email, 
         touristName: user.displayName,     
         touristImage: user.photoURL,
@@ -87,6 +89,28 @@ const AddStory = () => {
             className="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:ring-purple-300"
           ></textarea>
         </div>
+        <div>
+  <label className="block font-semibold mb-1">Select Guide</label>
+  <select
+    value={guideEmail}
+    onChange={(e) => setGuideEmail(e.target.value)}
+    className="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:ring-purple-300"
+    required
+  >
+    <option value="">-- Select a Guide --</option>
+    <option value="farhan@example.com">Farhan</option>
+    <option value="mahiarahman@example.com">Mahiarahman</option>
+    <option value="tanviralam@example.com">Tanvir Alam</option>
+    <option value="sohanakabir@example.com">Sohana Kabir</option>
+    <option value="ishraqhossain@example.com">Ishraq Hossain</option>
+    <option value="shahriar.chowdhury@example.com">Shahriar Chowdhury</option>
+    <option value="rakibhasan@example.com">Rakib Hasan</option>
+    <option value="sajidrahman@example.com">Sajid Rahman</option>
+    <option value="farzanaakter@example.com">Farzana Akter</option>
+    <option value="raisasultana@example.com">Raisa Sultana</option>
+  </select>
+</div>
+
 
         <div>
           <label className="block font-semibold mb-1">Upload Images (You can select multiple)</label>
