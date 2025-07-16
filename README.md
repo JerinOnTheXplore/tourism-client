@@ -4,12 +4,6 @@ Welcome to **Tourism Flow** — a complete tourism management platform built wit
 
 🔗 **Live Website:** [https://tourism-flow.web.app](https://tourism-flow.web.app)
 
-## 🔐 Admin Login Credentials
-
-- **Email:** admin@tourism.com  
-- **Password:** 123456
-
----
 
 ## ✨ Key Features
 
