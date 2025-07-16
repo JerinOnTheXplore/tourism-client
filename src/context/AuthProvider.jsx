@@ -4,6 +4,7 @@ import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged,
 import { auth } from '../firebase/firebase.init';
 import { createUserIfNotExists } from '../utils/CreateUserIfNotExists';
 
+
 const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({children}) => {
@@ -46,8 +47,8 @@ const AuthProvider = ({children}) => {
             setLoading(false);
 
             if (currentUser) {
-        await createUserIfNotExists(currentUser); 
-      }
+        await createUserIfNotExists(currentUser);  
+      } 
         });
 
         return () => {

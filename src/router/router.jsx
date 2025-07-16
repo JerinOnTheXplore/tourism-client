@@ -24,6 +24,7 @@ import ManageCandidates from "../pages/Dashboard/Admin/ManageCandidates";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import OfferAnnouncements from "../pages/OfferAnnouncement/OfferAnnouncements";
 import QuizLanding from "../pages/QuizLanding/QuizLanding";
+import PrivateRoute from "../routes/PrivateRoute";
 
 
 export const router = createBrowserRouter([
@@ -47,11 +48,15 @@ export const router = createBrowserRouter([
       },
       {
         path: 'packages/:id',
-        Component: PackageDetails,
+        element:<PrivateRoute>
+          <PackageDetails></PackageDetails>
+        </PrivateRoute>
       },
       {
         path: 'guides/:id',
-        Component: TourGuideProfile,
+        element:<PrivateRoute>
+          <TourGuideProfile></TourGuideProfile>
+        </PrivateRoute>
       },
       {
         path:"stories",
@@ -84,52 +89,76 @@ export const router = createBrowserRouter([
   },
   {
     path:"/dashboard",
-    element:<DashboardLayout>
-    </DashboardLayout>,
+    element:<PrivateRoute>
+      <DashboardLayout>
+    </DashboardLayout>
+    </PrivateRoute>,
     children:[
       {
         path:"profile",
-        element:<ManageProfile></ManageProfile>
+        element:<PrivateRoute>
+          <ManageProfile></ManageProfile>
+        </PrivateRoute>
       },
       {
         path: "assigned-tours",
-        element: <AssignedTours></AssignedTours>
+        element: <PrivateRoute>
+          <AssignedTours></AssignedTours>
+        </PrivateRoute>
       },
       {
         path: "add-story",
-        element: <AddStory></AddStory>
+        element: <PrivateRoute>
+          <AddStory></AddStory>
+        </PrivateRoute>
       },
       {
         path: "manage-stories",
-        element:<ManageStories></ManageStories>
+        element:<PrivateRoute>
+          <ManageStories></ManageStories>
+        </PrivateRoute>
       },
       {
         path: "update-story/:id",
-        element:<UpdateStory></UpdateStory>
+        element:<PrivateRoute>
+          <UpdateStory></UpdateStory>
+        </PrivateRoute>
       },
       {
         path:"join-guide",
-        element:<JoinAsTourGuide></JoinAsTourGuide>
+        element:<PrivateRoute>
+          <JoinAsTourGuide></JoinAsTourGuide>
+        </PrivateRoute>
       },
       {
         path:"my-bookings",
-        element:<MyBookings></MyBookings>
+        element:<PrivateRoute>
+          <MyBookings></MyBookings>
+        </PrivateRoute>
       },
       {
         path: "payment/:bookingId",
-        element:<PaymentPage></PaymentPage>
+        element:<PrivateRoute>
+          <PaymentPage></PaymentPage>
+        </PrivateRoute>
       },
       {
         path:"add-package",
-        element: <AddPackage></AddPackage>
+        element: <PrivateRoute>
+          <AddPackage></AddPackage>
+        </PrivateRoute>
       },
       {
         path: "manage-candidates",
-        element: <ManageCandidates></ManageCandidates>
+        element: <PrivateRoute>
+          <ManageCandidates></ManageCandidates>
+        </PrivateRoute>
       },
       {
         path: "manage-users",
-        element: <ManageUsers></ManageUsers>
+        element: <PrivateRoute>
+          <ManageUsers></ManageUsers>
+        </PrivateRoute>
       },
       
     ]

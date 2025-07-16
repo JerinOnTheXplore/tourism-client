@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import Confetti from 'react-confetti'
 import axios from "axios";
@@ -29,6 +29,16 @@ const PackageDetails = () => {
   const [bookingCount, setBookingCount] = useState(0);
 const [showCongrats, setShowCongrats] = useState(false);
 const { width, height } = useWindowSize();
+
+useEffect(() => {
+  if (user?.email) {
+    axios
+      .get(`https://tourism-server-delta.vercel.app/api/bookings?email=${user.email}`)
+      .then((res) => {
+        setBookingCount(res.data.length);
+      });
+  }
+}, [user?.email]);
 
   //  Get single package
   const {

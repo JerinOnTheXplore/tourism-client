@@ -5,7 +5,7 @@ import { Link } from "react-router";
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-br from-[#0e2a47] via-[#143d5c] to-[#1b5072] text-white py-10 px-6 mt-20 shadow-inner relative z-10">
+    <footer className="bg-gradient-to-br from-[#0e2a47] via-[#143d5c] to-[#1b5072] text-white py-10 px-6  shadow-inner relative z-10">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 items-center text-center md:text-left">
         {/* Logo + Name */}
         <div className="flex items-center justify-center md:justify-start gap-3">

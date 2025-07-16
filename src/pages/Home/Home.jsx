@@ -5,7 +5,7 @@ import PackagesAndGuides from './PackagesAndGuides';
 import StoriesSection from './StoriesSection';
 import TravelQuizSection from '../TravelQuizSection/TravelQuizSection';
 import WhyChooseUsSection from '../WhyChooseUsSection/WhyChooseUsSection';
-import Footer from '../../components/Footer/Footer';
+
 
 
 const Home = () => {
@@ -16,8 +16,7 @@ const Home = () => {
         <PackagesAndGuides></PackagesAndGuides>
         <StoriesSection></StoriesSection>
         <TravelQuizSection></TravelQuizSection>
-        <WhyChooseUsSection></WhyChooseUsSection> 
-        <Footer></Footer>  
+        <WhyChooseUsSection></WhyChooseUsSection>   
         </div>
     );
 };

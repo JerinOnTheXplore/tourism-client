@@ -138,12 +138,6 @@ const DashboardLayout = () => {
       <p className="font-semibold">{user?.displayName || "Tourist User"}</p>
       <p className="text-white/80">{user?.email}</p>
     </div>
-    <button
-      onClick={logOut}
-      className="mt-2 flex items-center gap-2 bg-white text-[#2a75b3] px-4 py-1.5 rounded-full text-sm font-semibold hover:bg-blue-100 transition"
-    >
-      <FaSignOutAlt /> Logout
-    </button>
   </div>
 </div>
       </aside>
