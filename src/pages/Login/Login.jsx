@@ -6,7 +6,7 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 
 const Login = () => {
-  const {signIn,signInWithGoogle,} = useAuth();
+  const {signIn,signInWithGoogle,resetPassword} = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const [error,setError] = useState("");
@@ -73,6 +73,33 @@ const Login = () => {
     })
   }
 
+  const handleForgotPassword = () => {
+  const email = document.querySelector("input[name='email']").value;
+  if (!email) {
+    Swal.fire({
+      icon: "warning",
+      title: "Enter Email First",
+      text: "Please enter your email address to reset your password.",
+    });
+    return;
+  }
+
+  resetPassword(email)
+    .then(() => {
+      Swal.fire({
+        icon: "success",
+        title: "Reset Link Sent",
+        text: `Password reset email sent to ${email}. Check your inbox.`,
+      });
+    })
+    .catch((error) => {
+      Swal.fire({
+        icon: "error",
+        title: "Failed to Send",
+        text: error.message,
+      });
+    });
+};
 
 
   return (
@@ -118,10 +145,14 @@ const Login = () => {
 
             {/* Forgot Password */}
         <div className="text-right">
-        <span className="text-sm text-gray-700 hover:underline cursor-pointer">
-        Forgot password?
-        </span>
-        </div>
+  <button
+    type="button"
+    onClick={handleForgotPassword}
+    className="text-sm text-gray-700 hover:underline"
+  >
+    Forgot password?
+  </button>
+</div>
         {error && <p className="text-red-400 text-xs">{error}</p>}
 
             {/* Bottom Links & Login */}

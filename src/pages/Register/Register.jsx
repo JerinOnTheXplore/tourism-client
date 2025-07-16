@@ -101,6 +101,8 @@ const Register = () => {
       });
   };
 
+
+
   return (
     <div className="min-h-screen w-full flex flex-col lg:flex-row">
       {/* Left Image */}

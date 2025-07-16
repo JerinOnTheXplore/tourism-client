@@ -12,7 +12,7 @@ const Footer = () => {
           <img src={logo} alt="Logo" className="w-12 h-12 rounded-full shadow-md border" />
           <div>
             <h3 className="text-xl font-semibold tracking-wide">Tourism Flow</h3>
-            <p className="text-sm text-gray-300">Explore the world with us</p>
+            <p className="text-sm text-gray-300">Explore Bangladesh with us</p>
           </div>
         </div>
 
