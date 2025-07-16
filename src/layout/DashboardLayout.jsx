@@ -38,7 +38,7 @@ const DashboardLayout = () => {
       </li>
 
       {/* Tourist */}
-      {role === "tourist" && (
+      {user && role === "tourist" && (
         <>
           <li>
             <Link to="/dashboard/my-bookings" className="menu-link">

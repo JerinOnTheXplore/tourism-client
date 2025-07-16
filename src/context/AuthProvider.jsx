@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { AuthContext } from './AuthContext';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import { auth } from '../firebase/firebase.init';
+import { createUserIfNotExists } from '../utils/CreateUserIfNotExists';
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -34,10 +35,14 @@ const AuthProvider = ({children}) => {
     }
 
     useEffect(() => {
-        const unSubscribe = onAuthStateChanged(auth, currentUser => {
+        const unSubscribe = onAuthStateChanged(auth, async(currentUser) => {
             setUser(currentUser);
             console.log('user in the auth state change', currentUser)
             setLoading(false);
+
+            if (currentUser) {
+        await createUserIfNotExists(currentUser); 
+      }
         });
 
         return () => {

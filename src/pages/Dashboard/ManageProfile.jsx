@@ -110,7 +110,7 @@ const ManageProfile = () => {
 
       {form.role === "tourist" && (
         <div className="text-center mt-6">
-          <button onClick={() => navigate("/join-as-guide")} className="btn btn-info">Apply For Tour Guide</button>
+          <button onClick={() => navigate("/dashboard/join-guide")} className="btn btn-info">Apply For Tour Guide</button>
         </div>
       )}
     </div>
