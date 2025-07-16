@@ -23,6 +23,7 @@ import AddPackage from "../pages/Dashboard/Admin/AddPackage";
 import ManageCandidates from "../pages/Dashboard/Admin/ManageCandidates";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import OfferAnnouncements from "../pages/OfferAnnouncement/OfferAnnouncements";
+import QuizLanding from "../pages/QuizLanding/QuizLanding";
 
 
 export const router = createBrowserRouter([
@@ -59,6 +60,10 @@ export const router = createBrowserRouter([
       {
         path:"offers",
         element: <OfferAnnouncements></OfferAnnouncements>
+      },
+      {
+        path:"quiz",
+        element:<QuizLanding></QuizLanding>
       }
       
       

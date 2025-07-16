@@ -127,17 +127,25 @@ const DashboardLayout = () => {
         <ul className="space-y-4">{menuItems}</ul>
 
         {/* Footer */}
-        <div className="mt-10 text-sm text-white/70 border-t pt-4">
-          Logged in as: <br />
-          <span className="text-white font-medium">{user?.email}</span>
-        </div>
-
-        <button
-          onClick={logOut}
-          className="mt-6 flex items-center gap-2 bg-white text-[#2a75b3] px-4 py-2 rounded-full shadow hover:bg-blue-100 transition"
-        >
-          <FaSignOutAlt /> Logout
-        </button>
+        <div className="mt-36 bg-white/10 backdrop-blur-md rounded-xl p-4 text-center text-white shadow-inner border-t border-white/30">
+  <div className="flex flex-col items-center gap-2">
+    <img
+      src={user?.photoURL || logo}
+      alt="User"
+      className="w-12 h-12 rounded-full border-2 border-white shadow-md"
+    />
+    <div className="text-sm leading-tight">
+      <p className="font-semibold">{user?.displayName || "Tourist User"}</p>
+      <p className="text-white/80">{user?.email}</p>
+    </div>
+    <button
+      onClick={logOut}
+      className="mt-2 flex items-center gap-2 bg-white text-[#2a75b3] px-4 py-1.5 rounded-full text-sm font-semibold hover:bg-blue-100 transition"
+    >
+      <FaSignOutAlt /> Logout
+    </button>
+  </div>
+</div>
       </aside>
 
       {/* Mobile Toggle Button */}

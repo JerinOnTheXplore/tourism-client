@@ -3,6 +3,9 @@ import Banner from './Banner';
 import Overview from './Overview';
 import PackagesAndGuides from './PackagesAndGuides';
 import StoriesSection from './StoriesSection';
+import TravelQuizSection from '../TravelQuizSection/TravelQuizSection';
+import WhyChooseUsSection from '../WhyChooseUsSection/WhyChooseUsSection';
+import Footer from '../../components/Footer/Footer';
 
 
 const Home = () => {
@@ -11,7 +14,10 @@ const Home = () => {
         <Banner></Banner>
         <Overview></Overview>
         <PackagesAndGuides></PackagesAndGuides>
-        <StoriesSection></StoriesSection>   
+        <StoriesSection></StoriesSection>
+        <TravelQuizSection></TravelQuizSection>
+        <WhyChooseUsSection></WhyChooseUsSection> 
+        <Footer></Footer>  
         </div>
     );
 };
