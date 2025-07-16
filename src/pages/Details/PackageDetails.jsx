@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
+import Confetti from 'react-confetti'
 import axios from "axios";
 import {
   FaMapMarkedAlt,
@@ -16,6 +17,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../loading/Loading";
+import { useWindowSize } from "react-use";
 
 const PackageDetails = () => {
   const { id } = useParams();
@@ -24,6 +26,9 @@ const PackageDetails = () => {
 
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedGuide, setSelectedGuide] = useState("");
+  const [bookingCount, setBookingCount] = useState(0);
+const [showCongrats, setShowCongrats] = useState(false);
+const { width, height } = useWindowSize();
 
   //  Get single package
   const {
@@ -59,29 +64,35 @@ const PackageDetails = () => {
 
   // Handle Booking Submit
   const handleBooking = () => {
-    if (!user) return navigate("/login");
-  const guide = guides.find(g => g.email === selectedGuide);
+  if (!user) return navigate("/login");
 
-    const bookingData = {
-      packageId: pkg._id,
-      packageName: pkg.title,
-      touristName: user.displayName || "Tourist",
-      touristEmail: user.email,
-      touristImage: user.photoURL,
-      price: pkg.price,
-      tourDate: selectedDate,
-      guideEmail: guide.email,
-      guideName: guide.name,
-      status: "pending",
-    };
+  const guide = guides.find((g) => g.email === selectedGuide);
 
-    axios
-      .post(
-        "https://tourism-server-delta.vercel.app/api/bookings",
-        bookingData
-      )
-      .then(() => {
-        Swal.fire({
+  const bookingData = {
+    packageId: pkg._id,
+    packageName: pkg.title,
+    touristName: user.displayName || "Tourist",
+    touristEmail: user.email,
+    touristImage: user.photoURL,
+    price: pkg.price,
+    tourDate: selectedDate,
+    guideEmail: guide.email,
+    guideName: guide.name,
+    status: "pending",
+  };
+
+  axios
+    .post("https://tourism-server-delta.vercel.app/api/bookings", bookingData)
+    .then(() => {
+      const newCount = bookingCount + 1;
+      setBookingCount(newCount);
+
+      if (newCount > 3) {
+        setShowCongrats(true);
+        setTimeout(() => setShowCongrats(false), 6000); // auto-hide after 6s
+      }
+
+      Swal.fire({
         icon: "success",
         title: "Booking Confirmed!",
         text: "Redirecting to your bookings...",
@@ -94,8 +105,7 @@ const PackageDetails = () => {
     .catch(() => {
       Swal.fire("Error", "Booking failed", "error");
     });
-      
-  };
+};
 
   // Loading/Error States
   if (isPackageLoading || isGuidesLoading)
@@ -225,6 +235,20 @@ const PackageDetails = () => {
       </div>
 
       {/*  Tour Guides Section */}
+      {showCongrats && (
+  <>
+    <Confetti width={width} height={height} />
+    <div className="text-center mb-6 animate-bounce">
+      <h2 className="text-3xl font-bold text-green-600 drop-shadow-lg">
+        🎉 Congratulations!
+      </h2>
+      <p className="text-lg text-gray-700 font-medium">
+        You’ve booked more than 3 tours — you’re a true explorer!
+      </p>
+    </div>
+  </>
+)}
+
       <div className="px-6 md:px-20 py-10">
         <h2 className="text-2xl font-bold text-slate-700 mb-6 text-center flex items-center justify-center gap-2">
           <MdTravelExplore className="text-blue-500 text-3xl" />

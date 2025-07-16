@@ -1,9 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Select from "react-select";
 import Loading from "../../loading/Loading";
-
 
 const roleOptions = [
   { value: "all", label: "All Roles" },
@@ -18,7 +17,9 @@ const fetchUsers = async ({ queryKey }) => {
   if (search) params.append("search", search);
   if (role && role !== "all") params.append("role", role);
 
-  const res = await axios.get(`https://tourism-server-delta.vercel.app/api/users?${params.toString()}`);
+  const res = await axios.get(
+    `https://tourism-server-delta.vercel.app/api/users?${params.toString()}`
+  );
   return res.data;
 };
 
@@ -26,10 +27,24 @@ const ManageUsers = () => {
   const [search, setSearch] = useState("");
   const [roleFilter, setRoleFilter] = useState("all");
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const usersPerPage = 10;
+
+  // Reset page to 1 on search or role change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [search, roleFilter]);
+
   const { data: users = [], isLoading } = useQuery({
     queryKey: ["users", { search, role: roleFilter }],
     queryFn: fetchUsers,
   });
+
+  // Pagination logic
+  const indexOfLastUser = currentPage * usersPerPage;
+  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
+  const totalPages = Math.ceil(users.length / usersPerPage);
 
   return (
     <div className="p-6">
@@ -54,7 +69,7 @@ const ManageUsers = () => {
       </div>
 
       {isLoading ? (
-        <Loading/>
+        <Loading />
       ) : (
         <div className="overflow-x-auto">
           <table className="table table-zebra w-full">
@@ -67,18 +82,28 @@ const ManageUsers = () => {
               </tr>
             </thead>
             <tbody>
-              {users.length === 0 ? (
+              {currentUsers.length === 0 ? (
                 <tr>
-                  <td colSpan="4" className="text-center py-6 text-gray-500">No users found</td>
+                  <td colSpan="4" className="text-center py-6 text-gray-500">
+                    No users found
+                  </td>
                 </tr>
               ) : (
-                users.map((user, idx) => (
+                currentUsers.map((user, idx) => (
                   <tr key={user._id}>
-                    <td>{idx + 1}</td>
+                    <td>{indexOfFirstUser + idx + 1}</td>
                     <td>{user.displayName}</td>
                     <td>{user.email}</td>
                     <td>
-                      <span className={`badge capitalize ${user.role === "admin" ? "badge-error" : user.role === "tourGuide" ? "badge-success" : "badge-info"}`}>
+                      <span
+                        className={`badge capitalize ${
+                          user.role === "admin"
+                            ? "badge-error"
+                            : user.role === "tourGuide"
+                            ? "badge-success"
+                            : "badge-info"
+                        }`}
+                      >
                         {user.role}
                       </span>
                     </td>
@@ -87,6 +112,25 @@ const ManageUsers = () => {
               )}
             </tbody>
           </table>
+
+          {/* Pagination Footer */}
+          {totalPages > 1 && (
+            <div className="flex justify-center mt-6 gap-2 flex-wrap">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+                <button
+                  key={pageNum}
+                  onClick={() => setCurrentPage(pageNum)}
+                  className={`px-3 py-1 rounded border ${
+                    currentPage === pageNum
+                      ? "bg-blue-500 text-white"
+                      : "bg-white text-blue-500 border-blue-500"
+                  }`}
+                >
+                  {pageNum}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>

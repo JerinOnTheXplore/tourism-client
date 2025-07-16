@@ -127,7 +127,7 @@ const DashboardLayout = () => {
         <ul className="space-y-4">{menuItems}</ul>
 
         {/* Footer */}
-        <div className="mt-36 bg-white/10 backdrop-blur-md rounded-xl p-4 text-center text-white shadow-inner border-t border-white/30">
+        <div className="mt-36 bg-white/10   backdrop-blur-md rounded-xl p-4 text-center text-white shadow-inner border-t border-white/30">
   <div className="flex flex-col items-center gap-2">
     <img
       src={user?.photoURL || logo}

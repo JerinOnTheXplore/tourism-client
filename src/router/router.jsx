@@ -130,7 +130,8 @@ export const router = createBrowserRouter([
       {
         path: "manage-users",
         element: <ManageUsers></ManageUsers>
-      }
+      },
+      
     ]
   }
 ]);

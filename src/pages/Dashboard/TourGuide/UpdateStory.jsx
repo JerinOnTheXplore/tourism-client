@@ -64,7 +64,7 @@ const UpdateStory = () => {
   try {
     await axios.patch(
       `https://tourism-server-delta.vercel.app/api/stories/${id}/add-image`,
-      { imageUrl: newPhoto } // ✅ match backend field
+      { imageUrl: newPhoto } 
     );
     setStory((prev) => ({
       ...prev,

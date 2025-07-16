@@ -5,72 +5,83 @@ import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
 
 const MyBookings = () => {
-  const {user} = useAuth();
+  const { user } = useAuth();
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const bookingsPerPage = 10;
+
+  // Fetch bookings of the logged-in user
   useEffect(() => {
-    if (!user?.email) return; // Wait until user is available
+    if (!user?.email) return;
 
     const fetchBookings = async () => {
-  try {
-    const res = await axios.get(`https://tourism-server-delta.vercel.app/api/bookings?email=${user.email}`);
-    console.log(" API response:", res.data);
+      try {
+        const res = await axios.get(
+          `https://tourism-server-delta.vercel.app/api/bookings?email=${user.email}`
+        );
 
-    if (Array.isArray(res.data)) {
-      setBookings(res.data);
-    } else {
-      console.warn(" Unexpected bookings data:", res.data);
-      setBookings([]); // Fallback to empty array
-    }
-  } catch (error) {
-    console.error(" Failed to fetch bookings:", error);
-    setBookings([]); // Fallback on network error
-  } finally {
-    setLoading(false);
-  }
-};
+        if (Array.isArray(res.data)) {
+          setBookings(res.data);
+        } else {
+          setBookings([]);
+        }
+      } catch (error) {
+        console.error("Failed to fetch bookings:", error);
+        setBookings([]);
+      } finally {
+        setLoading(false);
+      }
+    };
 
     fetchBookings();
   }, [user]);
 
+  // Cancel booking
   const handleCancel = async (bookingId) => {
-  const result = await Swal.fire({
-    title: "Are you sure?",
-    text: "Do you want to cancel this booking?",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#d33",
-    cancelButtonColor: "#3085d6",
-    confirmButtonText: "Yes, cancel it!",
-  });
-
-  if (!result.isConfirmed) return;
-
-  try {
-    await axios.delete(`https://tourism-server-delta.vercel.app/api/bookings/${bookingId}`);
-    setBookings(prev => prev.filter(b => b._id !== bookingId));
-
-    // Success alert
-    Swal.fire({
-      icon: "success",
-      title: "Cancelled!",
-      text: "Your booking has been cancelled.",
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "Do you want to cancel this booking?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, cancel it!",
     });
-  } catch (error) {
-    console.error("Failed to cancel booking:", error);
-    Swal.fire({
-      icon: "error",
-      title: "Failed!",
-      text: "Something went wrong while cancelling the booking.",
-    });
-  }
-};
 
+    if (!result.isConfirmed) return;
+
+    try {
+      await axios.delete(`https://tourism-server-delta.vercel.app/api/bookings/${bookingId}`);
+      setBookings((prev) => prev.filter((b) => b._id !== bookingId));
+
+      Swal.fire({
+        icon: "success",
+        title: "Cancelled!",
+        text: "Your booking has been cancelled.",
+      });
+    } catch (error) {
+      console.error("Failed to cancel booking:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Failed!",
+        text: "Something went wrong while cancelling the booking.",
+      });
+    }
+  };
+
+  // Pay for booking
   const handlePay = (bookingId) => {
     navigate(`/dashboard/payment/${bookingId}`);
   };
+
+  // Pagination logic
+  const indexOfLastBooking = currentPage * bookingsPerPage;
+  const indexOfFirstBooking = indexOfLastBooking - bookingsPerPage;
+  const currentBookings = bookings.slice(indexOfFirstBooking, indexOfLastBooking);
+  const totalPages = Math.ceil(bookings.length / bookingsPerPage);
 
   if (!user?.email) return <div>Loading user info...</div>;
   if (loading) return <div>Loading your bookings...</div>;
@@ -90,7 +101,7 @@ const MyBookings = () => {
           </tr>
         </thead>
         <tbody>
-          {bookings.map((booking) => {
+          {currentBookings.map((booking) => {
             const isPending = booking.status?.toLowerCase() === "pending";
             return (
               <tr key={booking._id} className="hover:bg-gray-50">
@@ -126,6 +137,23 @@ const MyBookings = () => {
           })}
         </tbody>
       </table>
+
+      {/* Pagination Footer */}
+      <div className="flex justify-center mt-4 gap-2 flex-wrap">
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+          <button
+            key={pageNum}
+            onClick={() => setCurrentPage(pageNum)}
+            className={`px-3 py-1 rounded border ${
+              currentPage === pageNum
+                ? "bg-blue-500 text-white"
+                : "bg-white text-blue-500 border-blue-500"
+            }`}
+          >
+            {pageNum}
+          </button>
+        ))}
+      </div>
     </div>
   );
 };
