@@ -22,6 +22,7 @@ import PaymentPage from "../pages/Dashboard/Tourist/PaymentPage";
 import AddPackage from "../pages/Dashboard/Admin/AddPackage";
 import ManageCandidates from "../pages/Dashboard/Admin/ManageCandidates";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
+import OfferAnnouncements from "../pages/OfferAnnouncement/OfferAnnouncements";
 
 
 export const router = createBrowserRouter([
@@ -52,9 +53,14 @@ export const router = createBrowserRouter([
         Component: TourGuideProfile,
       },
       {
-        path:"/stories",
+        path:"stories",
         element: <AllStories></AllStories>
       },
+      {
+        path:"offers",
+        element: <OfferAnnouncements></OfferAnnouncements>
+      }
+      
       
 
     ],

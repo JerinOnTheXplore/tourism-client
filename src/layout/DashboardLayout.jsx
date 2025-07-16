@@ -88,11 +88,6 @@ const DashboardLayout = () => {
       {role === "admin" && (
         <>
           <li>
-            <Link to="/dashboard/admin/assigned-tours" className="menu-link">
-              <FaSuitcase /> All Assigned Tours
-            </Link>
-          </li>
-          <li>
             <Link to="/dashboard/add-package" className="menu-link">
               <FaPlus /> Add Package
             </Link>
