@@ -22,14 +22,12 @@ const Banner = () => {
         {[banner1, banner2, banner3].map((img, idx) => (
           <div key={idx} className="relative h-[70vh] w-full overflow-hidden">
             <img src={img} alt={`Banner ${idx + 1}`} className="object-cover h-full w-full" />
-            
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-black/30 dark:bg-black/50 flex items-center justify-center text-center px-4">
-              <div>
-                <h2 className="text-4xl md:text-6xl font-bold mb-3 text-white drop-shadow-lg">
+            <div className="absolute inset-0 bg-opacity-30 flex items-center justify-center   text-center px-4">
+              <div className='bg-base-100 px-5 pt-4 pb-16 rounded-tl-3xl rounded-br-4xl'>
+                <h2 className="text-4xl md:text-6xl font-bold mb-3 drop-shadow">
                   Discover the Beauty of Bangladesh
                 </h2>
-                <p className="text-lg md:text-xl text-white/90 drop-shadow-md">
+                <p className="text-lg md:text-xl drop-shadow">
                   Explore new destinations with our expert tour guides.
                 </p>
               </div>
@@ -38,29 +36,7 @@ const Banner = () => {
         ))}
       </Carousel>
 
-      {/* Feature Section Below Banner */}
-      <div className="relative z-10 mt-[-40px] px-4">
-        <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg grid grid-cols-1 md:grid-cols-3 gap-6 p-6 md:p-10 max-w-6xl mx-auto text-center">
-          <div>
-            <h3 className="text-xl font-bold text-gray-700 dark:text-gray-200 mb-2">Authentic Experiences</h3>
-            <p className="text-gray-600 dark:text-gray-300 text-sm">
-              Connect with local culture, cuisine, and landscapes like never before.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-xl font-bold text-gray-700 dark:text-gray-200 mb-2">Expert Tour Guides</h3>
-            <p className="text-gray-600 dark:text-gray-300 text-sm">
-              Our certified guides make your journey safer and more enriching.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-xl font-bold text-gray-700 dark:text-gray-200 mb-2">Tailored Tour Packages</h3>
-            <p className="text-gray-600 dark:text-gray-300 text-sm">
-              Choose from a wide range of personalized packages for every type of traveler.
-            </p>
-          </div>
-        </div>
-      </div>
+      
     </div>
   );
 };

@@ -21,7 +21,7 @@ const Navbar = () => {
   }, [isDrawerOpen]);
 
   const navLinkStyle =
-    "text-navbar-text hover:text-blue-300 dark:text-white dark:hover:text-blue-400 font-bold text-lg font-sans";
+    " hover:text-blue-300  dark:hover:text-blue-400 font-bold text-lg font-sans";
   const activeStyle = "border-b-2 border-blue-200 dark:border-blue-400";
 
   const handleLogout = () => logOut();
@@ -72,7 +72,7 @@ const Navbar = () => {
       <li>
         <button
           onClick={toggleTheme}
-          className="p-2 rounded-full bg-white/20 hover:bg-white/30 dark:bg-gray-600 dark:hover:bg-gray-500 transition"
+          className="p-2 rounded-full  transition"
           aria-label="Toggle theme"
         >
           {darkMode ? <FaSun className="text-yellow-300" /> : <FaMoon className="text-yellow-300" />}
@@ -109,24 +109,24 @@ const Navbar = () => {
                 </div>
               </div>
             </summary>
-            <ul className="p-3 mt-3 shadow-lg menu dropdown-content z-[1] bg-navbar-bg dark:bg-gray-700 rounded-box w-56 text-sm">
+            <ul className="p-3 mt-3 shadow-lg menu dropdown-content z-[1]  rounded-box w-56 text-sm">
               <li>
-                <span className="text-sm font-bold text-navbar-text dark:text-white">{user.displayName}</span>
+                <span className="text-sm font-bold">{user.displayName}</span>
               </li>
               <li>
-                <span className="text-sm text-navbar-text/70 dark:text-gray-300 font-bold">{user.email}</span>
+                <span className="text-sm  font-bold">{user.email}</span>
               </li>
-              <li className="text-base font-bold text-navbar-text dark:text-gray-200">
+              <li className="text-base font-bold ">
                 <Link to="/dashboard" onClick={() => setIsDrawerOpen(false)}>
                   <FaTachometerAlt className="inline mr-2" /> Dashboard
                 </Link>
               </li>
-              <li className="text-base font-bold text-navbar-text dark:text-gray-200">
+              <li className="text-base font-bold ">
                 <Link to="/offers" onClick={() => setIsDrawerOpen(false)}>
                   <FaTags className="inline mr-2" /> Offer Announcements
                 </Link>
               </li>
-              <li className="text-base font-bold text-navbar-text dark:text-gray-200">
+              <li className="text-base font-bold ">
                 <button onClick={handleLogout}>
                   <FaSignOutAlt className="inline mr-2" /> Logout
                 </button>
@@ -139,12 +139,12 @@ const Navbar = () => {
   );
 
   return (
-    <div className="sticky top-0 z-50 w-full backdrop-blur-sm bg-navbar-bg/90 dark:bg-gray-900/90 shadow-md">
+    <div className="sticky top-0 z-50 w-full backdrop-blur-sm  shadow-md border-b border-gray-400 border-dashed">
       {/* Top Row */}
-      <div className="bg-navbar-header-bg dark:bg-gray-800 container px-4 md:px-16 lg:px-36 py-3 flex items-center justify-between max-w-full border-b border-gray-400 border-dashed">
+      <div className=" container px-4 md:px-16 lg:px-36 py-3 flex items-center justify-between max-w-full border-b border-gray-400 border-dashed">
         <Link to="/" className="flex items-center gap-2" onClick={() => setIsDrawerOpen(false)}>
           <img src={logo} alt="Logo" className="w-10 h-10 rounded-full" />
-          <span className="text-xl font-bold font-sans text-navbar-text dark:text-white">TOURISM FLOW</span>
+          <span className="text-xl font-bold font-sans">TOURISM FLOW</span>
         </Link>
 
         {/* Search Bar */}
@@ -153,7 +153,7 @@ const Navbar = () => {
             <input
               type="text"
               placeholder="Search destinations..."
-              className="w-full pl-10 pr-4 py-2 border bg-white dark:bg-gray-600 dark:border-gray-500 dark:text-white border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full pl-10 pr-4 py-2 border  dark:border-gray-500 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -163,10 +163,10 @@ const Navbar = () => {
       </div>
 
       {/* Bottom Row */}
-      <div className="navbar px-4 md:px-16 lg:px-36 py-2 flex items-center justify-between relative bg-navbar-bg/90 dark:bg-gray-900/90">
+      <div className="navbar px-4 md:px-16 lg:px-36 py-2 flex items-center justify-between relative">
         {/* Hamburger Icon */}
         <div className="lg:hidden px-4">
-          <button onClick={toggleDrawer} className="text-navbar-text dark:text-white">
+          <button onClick={toggleDrawer} className="">
             <FaBars size={24} />
           </button>
         </div>
@@ -179,17 +179,17 @@ const Navbar = () => {
 
         {/* Mobile Drawer */}
         {isDrawerOpen && (
-          <div className="fixed inset-0 z-40">
+          <div className="fixed inset-0  z-40">
             {/* Glassy overlay */}
             <div
-              className="absolute inset-0  backdrop-blur-md"
+              className="absolute inset-0 bg-black/30 backdrop-blur-md"
               onClick={toggleDrawer}
             ></div>
 
-            <div className="fixed top-0 left-0 w-72 h-150 p-6 overflow-y-auto shadow-lg z-50 bg-white/40 dark:bg-gray-900/30 backdrop-blur-md rounded-r-lg">
+            <div className="fixed top-0 left-0 w-72 h-160 p-6 overflow-y-auto shadow-lg z-50 bg-base-100 backdrop-blur-md rounded-r-lg">
               <div className="flex justify-between items-center mb-6">
                 <button onClick={toggleDrawer}>
-                  <IoClose size={28} className="text-navbar-text dark:text-white" />
+                  <IoClose size={28} className="text-navbar-text " />
                 </button>
               </div>
 
@@ -199,7 +199,7 @@ const Navbar = () => {
                   <input
                     type="text"
                     placeholder="Search..."
-                    className="w-full pl-10 pr-4 py-2 border bg-white dark:bg-gray-600 dark:text-white border-gray-300 rounded focus:outline-none"
+                    className="w-full pl-10 pr-4 py-2 border  border-gray-300 rounded focus:outline-none"
                   />
                   <FaSearch className="absolute left-3 top-3 text-gray-400 dark:text-gray-300" />
                 </div>
