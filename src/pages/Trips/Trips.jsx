@@ -35,7 +35,7 @@ const Trips = () => {
               className="w-full h-52 object-cover rounded"
             />
             <h3 className="text-xl font-semibold">{pkg.title}</h3>
-            <p className="text-gray-600">{pkg.about?.slice(0, 80)}...</p>
+            <p className="">{pkg.about?.slice(0, 80)}...</p>
             <p><strong>Type:</strong> {pkg.type}</p>
             <p><strong>Price:</strong> ৳{pkg.price}</p>
             <Link

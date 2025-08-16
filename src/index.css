@@ -1,2 +1,40 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+}
+
+.dark {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+}
+:root, .light {
+  --navbar-bg: #2a6a97;
+  --navbar-header-bg: #3a7ca5;
+  --navbar-drawer-bg: #4a8bb8;
+  --text-color: #f8fafc;
+}
+
+.dark {
+  --navbar-bg: #1e293b;
+  --navbar-header-bg: #334155;
+  --navbar-drawer-bg: #475569;
+  --text-color: #f8fafc;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+  .nav-link {
+    @apply text-stone-50 hover:text-gray-200 dark:text-gray-800 dark:hover:text-gray-700;
+  }
+}

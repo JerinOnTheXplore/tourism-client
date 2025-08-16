@@ -1,33 +1,49 @@
-import { useState } from "react";
-import { FaBars } from "react-icons/fa";
+import { useState, useEffect } from "react";
+import { FaBars, FaSearch, FaMoon, FaSun, FaHome, FaUsers, FaInfoCircle, FaSuitcaseRolling, FaSignInAlt, FaUserPlus, FaTachometerAlt, FaTags, FaSignOutAlt } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import { Link, NavLink } from "react-router";
 import logo from "../../assets/logoImg.jpg";
 import useAuth from "../../hooks/useAuth";
+import { useTheme } from "../../context/ThemeProvider";
 
 const Navbar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const toggleDrawer = () => setIsDrawerOpen(!isDrawerOpen);
 
+  const { darkMode, toggleTheme } = useTheme();
   const { user, logOut } = useAuth();
 
-  const navLinkStyle = "text-lg font-bold text-gray-600 font-sans hover:text-blue-600";
-  const activeStyle = "border-b-2 border-gray-500";
+  useEffect(() => {
+    if (isDrawerOpen) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "";
+    return () => (document.body.style.overflow = "");
+  }, [isDrawerOpen]);
 
-  const handleLogout = () => {
-    logOut();
-  };
+  const navLinkStyle =
+    "text-navbar-text hover:text-blue-300 dark:text-white dark:hover:text-blue-400 font-bold text-lg font-sans";
+  const activeStyle = "border-b-2 border-blue-200 dark:border-blue-400";
+
+  const handleLogout = () => logOut();
 
   const leftNavItems = (
     <>
       <li>
-        <NavLink to="/" className={({ isActive }) => `${navLinkStyle} ${isActive ? activeStyle : ""}`}>
-          Home
+        <NavLink
+          to="/"
+          className={({ isActive }) => `${navLinkStyle} ${isActive ? activeStyle : ""}`}
+          onClick={() => setIsDrawerOpen(false)}
+        >
+          <FaHome className="inline mr-2" /> Home
         </NavLink>
       </li>
       <li>
-        <NavLink to="/community" className={({ isActive }) => `${navLinkStyle} ${isActive ? activeStyle : ""}`}>
-          Community
+        <NavLink
+          to="/community"
+          className={({ isActive }) => `${navLinkStyle} ${isActive ? activeStyle : ""}`}
+          onClick={() => setIsDrawerOpen(false)}
+        >
+          <FaUsers className="inline mr-2" /> Community
         </NavLink>
       </li>
     </>
@@ -36,25 +52,50 @@ const Navbar = () => {
   const rightNavItems = (
     <>
       <li>
-        <NavLink to="/about" className={({ isActive }) => `${navLinkStyle} ${isActive ? activeStyle : ""}`}>
-          About Us
+        <NavLink
+          to="/about"
+          className={({ isActive }) => `${navLinkStyle} ${isActive ? activeStyle : ""}`}
+          onClick={() => setIsDrawerOpen(false)}
+        >
+          <FaInfoCircle className="inline mr-2" /> About Us
         </NavLink>
       </li>
       <li>
-        <NavLink to="/trips" className={({ isActive }) => `${navLinkStyle} ${isActive ? activeStyle : ""}`}>
-          Trips
+        <NavLink
+          to="/trips"
+          className={({ isActive }) => `${navLinkStyle} ${isActive ? activeStyle : ""}`}
+          onClick={() => setIsDrawerOpen(false)}
+        >
+          <FaSuitcaseRolling className="inline mr-2" /> Trips
         </NavLink>
+      </li>
+      <li>
+        <button
+          onClick={toggleTheme}
+          className="p-2 rounded-full bg-white/20 hover:bg-white/30 dark:bg-gray-600 dark:hover:bg-gray-500 transition"
+          aria-label="Toggle theme"
+        >
+          {darkMode ? <FaSun className="text-yellow-300" /> : <FaMoon className="text-yellow-300" />}
+        </button>
       </li>
       {!user ? (
         <>
           <li>
-            <NavLink to="/login" className={({ isActive }) => `${navLinkStyle} ${isActive ? activeStyle : ""}`}>
-              Login
+            <NavLink
+              to="/login"
+              className={({ isActive }) => `${navLinkStyle} ${isActive ? activeStyle : ""}`}
+              onClick={() => setIsDrawerOpen(false)}
+            >
+              <FaSignInAlt className="inline mr-2" /> Login
             </NavLink>
           </li>
           <li>
-            <NavLink to="/register" className={({ isActive }) => `${navLinkStyle} ${isActive ? activeStyle : ""}`}>
-              Register
+            <NavLink
+              to="/register"
+              className={({ isActive }) => `${navLinkStyle} ${isActive ? activeStyle : ""}`}
+              onClick={() => setIsDrawerOpen(false)}
+            >
+              <FaUserPlus className="inline mr-2" /> Register
             </NavLink>
           </li>
         </>
@@ -68,12 +109,28 @@ const Navbar = () => {
                 </div>
               </div>
             </summary>
-            <ul className="p-3 mt-3 shadow-lg menu dropdown-content z-[1] bg-white rounded-box w-56 text-sm">
-              <li><span className="font-bold">{user.displayName}</span></li>
-              <li><span className="text-sm text-gray-500 font-semibold font-sans">{user.email}</span></li>
-              <li className="text-base text-gray-600 font-semibold font-sans"><Link to="/dashboard">Dashboard</Link></li>
-              <li className="text-base text-gray-600 font-semibold font-sans"><Link to="/offers">Offer Announcements</Link></li>
-              <li className="text-base text-gray-600 font-semibold font-sans"><button onClick={handleLogout}>Logout</button></li>
+            <ul className="p-3 mt-3 shadow-lg menu dropdown-content z-[1] bg-navbar-bg dark:bg-gray-700 rounded-box w-56 text-sm">
+              <li>
+                <span className="text-sm font-bold text-navbar-text dark:text-white">{user.displayName}</span>
+              </li>
+              <li>
+                <span className="text-sm text-navbar-text/70 dark:text-gray-300 font-bold">{user.email}</span>
+              </li>
+              <li className="text-base font-bold text-navbar-text dark:text-gray-200">
+                <Link to="/dashboard" onClick={() => setIsDrawerOpen(false)}>
+                  <FaTachometerAlt className="inline mr-2" /> Dashboard
+                </Link>
+              </li>
+              <li className="text-base font-bold text-navbar-text dark:text-gray-200">
+                <Link to="/offers" onClick={() => setIsDrawerOpen(false)}>
+                  <FaTags className="inline mr-2" /> Offer Announcements
+                </Link>
+              </li>
+              <li className="text-base font-bold text-navbar-text dark:text-gray-200">
+                <button onClick={handleLogout}>
+                  <FaSignOutAlt className="inline mr-2" /> Logout
+                </button>
+              </li>
             </ul>
           </details>
         </li>
@@ -82,67 +139,78 @@ const Navbar = () => {
   );
 
   return (
-    <div className="bg-gradient-to-br from-[#e0f4ff] via-[#f7fbff] to-[#fefcfb] shadow-sm sticky top-0 z-50 font-[Inter]">
-      <div className="navbar max-w-7xl mx-auto px-4 py-3 flex items-center justify-between relative">
-        {/* Hamburger Icon (left side on mobile) */}
-        <div className="lg:hidden absolute left-4 top-3.5">
-          <button onClick={toggleDrawer} className="text-gray-600">
-            <FaBars size={22} />
-          </button>
-        </div>
+    <div className="sticky top-0 z-50 w-full backdrop-blur-sm bg-navbar-bg/90 dark:bg-gray-900/90 shadow-md">
+      {/* Top Row */}
+      <div className="bg-navbar-header-bg dark:bg-gray-800 container px-4 md:px-16 lg:px-36 py-3 flex items-center justify-between max-w-full border-b border-gray-400 border-dashed">
+        <Link to="/" className="flex items-center gap-2" onClick={() => setIsDrawerOpen(false)}>
+          <img src={logo} alt="Logo" className="w-10 h-10 rounded-full" />
+          <span className="text-xl font-bold font-sans text-navbar-text dark:text-white">TOURISM FLOW</span>
+        </Link>
 
-        {/* Left Nav (Desktop) */}
-        <div className="hidden lg:flex flex-1 justify-start">
-          <ul className="menu menu-horizontal gap-5">{leftNavItems}</ul>
-        </div>
-
-        {/* Logo Center */}
-        <div className="flex justify-center flex-1">
-          <Link to="/" className="flex items-center gap-2 text-2xl font-bold text-gray-700">
-            <img src={logo} alt="logo" className="w-10 h-10 rounded-full" />
-            <span className="tracking-wider text-2xl md:text-3xl font-sans">TOURISM FLOW</span>
-          </Link>
-        </div>
-
-        {/* Right Nav (Desktop) */}
-        <div className="hidden lg:flex flex-1 justify-end">
-          <ul className="menu menu-horizontal items-center gap-5">
-            {rightNavItems}
-          </ul>
+        {/* Search Bar */}
+        <div className="hidden md:flex items-center mx-6 flex-1 max-w-md">
+          <div className="relative w-full font-sans">
+            <input
+              type="text"
+              placeholder="Search destinations..."
+              className="w-full pl-10 pr-4 py-2 border bg-white dark:bg-gray-600 dark:border-gray-500 dark:text-white border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <FaSearch className="absolute left-3 top-3 text-gray-400 dark:text-gray-300" />
+          </div>
         </div>
       </div>
 
-      {/* Mobile Drawer */}
-      {isDrawerOpen && (
-        <div className="fixed inset-0 z-40">
-          <div className="absolute inset-0 bg-opacity-20 backdrop-brightness-50" onClick={toggleDrawer}></div>
-
-          <div className="fixed top-0 left-0 w-72 h-full bg-white shadow-lg z-50 p-6 overflow-y-auto">
-            <div className="flex justify-between items-center mb-6">
-              <Link to="/" onClick={toggleDrawer} className="text-lg font-bold font-sans text-gray-700">
-                TOURISM FLOW
-              </Link>
-              <button onClick={toggleDrawer}>
-                <IoClose size={28} className="text-gray-600" />
-              </button>
-            </div>
-
-            <ul className="space-y-3 mb-4 pb-4">{leftNavItems}</ul>
-            <ul className="space-y-4">
-              {rightNavItems}
-              {user && (
-                <div className="mt-4 space-y-2 text-sm border-t border-dashed border-gray-300 pt-4">
-                  <li><span className="font-semibold font-sans">{user.displayName}</span></li>
-                  <li><span className="text-base font-semibold font-sans text-gray-600">{user.email}</span></li>
-                  <li className="text-base font-semibold font-sans text-gray-600"><Link to="/dashboard">Dashboard</Link></li>
-                  <li className="text-base font-semibold font-sans text-gray-600"><Link to="/offers">Offer Announcements</Link></li>
-                  <li className="text-base font-semibold font-sans text-gray-600"><button onClick={handleLogout}>Logout</button></li>
-                </div>
-              )}
-            </ul>
-          </div>
+      {/* Bottom Row */}
+      <div className="navbar px-4 md:px-16 lg:px-36 py-2 flex items-center justify-between relative bg-navbar-bg/90 dark:bg-gray-900/90">
+        {/* Hamburger Icon */}
+        <div className="lg:hidden px-4">
+          <button onClick={toggleDrawer} className="text-navbar-text dark:text-white">
+            <FaBars size={24} />
+          </button>
         </div>
-      )}
+
+        {/* Desktop Nav */}
+        <div className="hidden lg:flex flex-1 justify-between">
+          <ul className="menu menu-horizontal gap-6 px-1">{leftNavItems}</ul>
+          <ul className="menu menu-horizontal items-center gap-6 px-1">{rightNavItems}</ul>
+        </div>
+
+        {/* Mobile Drawer */}
+        {isDrawerOpen && (
+          <div className="fixed inset-0 z-40">
+            {/* Glassy overlay */}
+            <div
+              className="absolute inset-0  backdrop-blur-md"
+              onClick={toggleDrawer}
+            ></div>
+
+            <div className="fixed top-0 left-0 w-72 h-150 p-6 overflow-y-auto shadow-lg z-50 bg-white/40 dark:bg-gray-900/30 backdrop-blur-md rounded-r-lg">
+              <div className="flex justify-between items-center mb-6">
+                <button onClick={toggleDrawer}>
+                  <IoClose size={28} className="text-navbar-text dark:text-white" />
+                </button>
+              </div>
+
+              {/* Mobile Search */}
+              <div className="mb-4 md:hidden">
+                <div className="relative w-full">
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    className="w-full pl-10 pr-4 py-2 border bg-white dark:bg-gray-600 dark:text-white border-gray-300 rounded focus:outline-none"
+                  />
+                  <FaSearch className="absolute left-3 top-3 text-gray-400 dark:text-gray-300" />
+                </div>
+              </div>
+
+              <ul className="space-y-3 mb-4 pb-4 border-b border-gray-300 dark:border-gray-500">{leftNavItems}</ul>
+              <ul className="space-y-4">{rightNavItems}</ul>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

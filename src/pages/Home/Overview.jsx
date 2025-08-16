@@ -10,15 +10,15 @@ const Overview = () => {
   }, []);
 
   return (
-    <section className="bg-gradient-to-br from-[#e0f4ff] via-[#f7fbff] to-[#e0f4ff] py-36 px-4 lg:px-20">
+    <section className=" py-36 px-4 lg:px-20">
       <div className="max-w-7xl mx-auto space-y-20">
         {/* Section Title */}
         <div data-aos="zoom-in" className="text-center">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4 flex justify-center items-center gap-3">
+          <h2 className="text-4xl font-bold mb-4 flex justify-center items-center gap-3">
             <FaMapMarkedAlt className="text-blue-500" />
             Overview of Our Journey
           </h2>
-          <p className="text-gray-600 max-w-3xl mx-auto text-lg">
+          <p className=" max-w-3xl mx-auto text-lg">
             We are dedicated to bringing you the heart of Bangladesh through immersive videos, expert travel guidance, and the hidden beauty most miss.
           </p>
         </div>
@@ -30,14 +30,14 @@ const Overview = () => {
         >
           {/* Text */}
           <div className="lg:w-1/2 text-center lg:text-left space-y-4">
-            <h3 className="text-2xl font-semibold text-gray-800 flex items-center gap-2">
+            <h3 className="text-2xl font-semibold flex items-center gap-2">
               <FaUmbrellaBeach className="text-blue-500" />
               Explore Unseen Destinations
             </h3>
-            <p className="text-gray-600 text-lg">
+            <p className=" text-lg">
               From the misty hills of Sylhet to the golden sands of Cox’s Bazar, discover iconic landmarks and hidden gems with ease.
             </p>
-            <ul className="space-y-2 text-gray-700 text-base mt-4">
+            <ul className="space-y-2  text-base mt-4">
               <li className="flex items-center gap-2">
                 <FaCampground className="text-blue-400" />
                 50+ Natural Spots Covered
@@ -81,14 +81,14 @@ const Overview = () => {
 
           {/* Text */}
           <div className="lg:w-1/2 text-center lg:text-left space-y-4">
-            <h3 className="text-2xl font-semibold text-gray-800 flex items-center gap-2">
+            <h3 className="text-2xl font-semibold flex items-center gap-2">
               <FaUtensils className="text-blue-500" />
               Dive into Culture & Cuisine
             </h3>
-            <p className="text-gray-600 text-lg">
+            <p className=" text-lg">
               Taste the flavors of Bangladesh while learning about the unique traditions, music, and lifestyle of its diverse communities.
             </p>
-            <ul className="space-y-2 text-gray-700 text-base mt-4">
+            <ul className="space-y-2  text-base mt-4">
               <li className="flex items-center gap-2">
                 <FaVideo className="text-blue-400" />
                 Curated Travel Documentaries
