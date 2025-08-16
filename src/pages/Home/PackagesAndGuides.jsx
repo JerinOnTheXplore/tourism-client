@@ -49,20 +49,20 @@ const PackagesAndGuides = () => {
   if (errorPackages || errorGuides) return <p className="text-center py-10 text-red-500">Failed to load data</p>;
 
   return (
-    <section className="py-10 px-6 md:px-20 bg-gradient-to-br from-[#e0f4ff] via-[#f7fbff] to-[#e0f4ff]">
+    <section className="py-10 px-6 md:px-20">
       <h2
         className="text-4xl font-bold text-center mb-12 tracking-wide 
              bg-gradient-to-r from-gray-700 via-gray-500 to-gray-400 
-             text-transparent bg-clip-text"
+              bg-clip-text"
         data-aos="zoom-in"
       >
         <FaSuitcaseRolling className="inline-block text-4xl mr-3" /> Tourism and Travel Guide
       </h2>
 
-      <Tabs selectedTabClassName="!text-slate-500 !border-b-4  !border-slate-500 font-bold">
-        <TabList className="flex justify-center gap-10 font-bold text-lg text-gray-600 border-b border-dashed border-gray-400 pb-5 mb-8">
-          <Tab className="cursor-pointer hover:text-blue-300 px-4">Tour Packages</Tab>
-          <Tab className="cursor-pointer hover:text-slate-500 px-4">Top Tour Guides</Tab>
+      <Tabs selectedTabClassName="!text-base-500 !border-b-4  !border-slate-500 font-bold">
+        <TabList className="flex justify-center gap-10 font-bold text-lg  border-b border-dashed pb-5 mb-8">
+          <Tab className="cursor-pointer px-4">Tour Packages</Tab>
+          <Tab className="cursor-pointer px-4">Top Tour Guides</Tab>
         </TabList>
 
         <TabPanel>

@@ -139,9 +139,9 @@ const Navbar = () => {
   );
 
   return (
-    <div className="sticky top-0 z-50 w-full backdrop-blur-sm  shadow-md border-b border-gray-400 border-dashed">
+    <div className="sticky top-0 z-50 w-full backdrop-blur-sm  shadow-md border-b border-gray-400 border-dashed py-1">
       {/* Top Row */}
-      <div className=" container px-4 md:px-16 lg:px-36 py-3 flex items-center justify-between max-w-full border-b border-gray-400 border-dashed">
+      <div className=" container px-4 md:px-16 lg:px-36 py-6 flex items-center justify-between max-w-full border-b border-gray-400 border-dashed">
         <Link to="/" className="flex items-center gap-2" onClick={() => setIsDrawerOpen(false)}>
           <img src={logo} alt="Logo" className="w-10 h-10 rounded-full" />
           <span className="text-xl font-bold font-sans">TOURISM FLOW</span>
@@ -163,7 +163,7 @@ const Navbar = () => {
       </div>
 
       {/* Bottom Row */}
-      <div className="navbar px-4 md:px-16 lg:px-36 py-2 flex items-center justify-between relative">
+      <div className="navbar px-4 md:px-16 lg:px-36 py-1 flex items-center justify-between relative">
         {/* Hamburger Icon */}
         <div className="lg:hidden px-4">
           <button onClick={toggleDrawer} className="">
@@ -182,11 +182,11 @@ const Navbar = () => {
           <div className="fixed inset-0  z-40">
             {/* Glassy overlay */}
             <div
-              className="absolute inset-0 bg-black/30 backdrop-blur-md"
+              className="absolute inset-0  backdrop-blur-md"
               onClick={toggleDrawer}
             ></div>
 
-            <div className="fixed top-0 left-0 w-72 h-160 p-6 overflow-y-auto shadow-lg z-50 bg-base-100 backdrop-blur-md rounded-r-lg">
+            <div className="fixed top-0 left-0 w-72 h-160 p-6 overflow-y-auto shadow-lg z-50 bg-base-100 backdrop-blur-md rounded-r-lg border-1 border-gray-300">
               <div className="flex justify-between items-center mb-6">
                 <button onClick={toggleDrawer}>
                   <IoClose size={28} className="text-navbar-text " />
@@ -201,7 +201,7 @@ const Navbar = () => {
                     placeholder="Search..."
                     className="w-full pl-10 pr-4 py-2 border  border-gray-300 rounded focus:outline-none"
                   />
-                  <FaSearch className="absolute left-3 top-3 text-gray-400 dark:text-gray-300" />
+                  <FaSearch className="absolute left-3 top-3 " />
                 </div>
               </div>
 
