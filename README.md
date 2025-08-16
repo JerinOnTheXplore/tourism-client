@@ -1,5 +1,10 @@
 # 🌍 Tourism Flow
 
+<img src="https://i.ibb.co.com/rD5KYPj/visitor.png" alt="tour Image" style="width: 100%; border-radius: 15px; filter: brightness(0.8);" />
+
+**Overview:** A modern tourism booking platform with features including user roles (admin/user), booking system, and admin panel.
+
+
 Welcome to **Tourism Flow** — a complete tourism management platform built with the MERN stack. This platform allows users to explore, book, and manage tour packages, while also supporting tour guides and administrators to manage services efficiently.
 
 🔗 **Live Website:** [https://tourism-flow.web.app](https://tourism-flow.web.app)
@@ -48,6 +53,14 @@ Welcome to **Tourism Flow** — a complete tourism management platform built wit
 - **Deployment:** Vercel (Server) & Firebase Hosting (Client)
 
 ---
+
+**Core Features:** 
+
+   ⬛⬜**User Role Management** Supports three roles: Tourist, Tour Guide, and Admin with protected dashboards.
+   
+   ⬛⬜**Payment Integration** Secure Stripe-based payment gateway for booking confirmations.
+
+**Dependencies:** react-router, axios, TanStack Query,ReactPaginate
 
 ## 🧑‍💻 Developed By
 
