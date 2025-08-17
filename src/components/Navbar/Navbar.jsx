@@ -75,7 +75,7 @@ const Navbar = () => {
           className="p-2 rounded-full  transition"
           aria-label="Toggle theme"
         >
-          {darkMode ? <FaSun className="text-yellow-300" /> : <FaMoon className="text-yellow-300" />}
+          {darkMode ? <FaSun className="text-yellow-300" size={24} /> : <FaMoon className="text-yellow-300" size={24}/>}
         </button>
       </li>
       {!user ? (

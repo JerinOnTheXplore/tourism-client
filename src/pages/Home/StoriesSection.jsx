@@ -28,14 +28,14 @@ const StoriesSection = () => {
   };
 
   if (isLoading) return <p className="text-center py-20 text-gray-500">Loading stories...</p>;
-  if (isError) return <p className="text-center py-20 text-red-500">Failed to load stories</p>;
+  if (isError) return <p className="text-center py-20 ">Failed to load stories</p>;
 
   return (
-    <div className="px-6 md:px-20 py-16 bg-gradient-to-br from-[#e0f4ff] via-white to-[#e0f4ff]">
+    <div className="px-4 md:px-16 lg:px-36 py-16 md:py-36 ">
       <div className="flex justify-between items-center mb-10">
-        <h2 className="text-3xl font-bold text-slate-800 flex items-center gap-2">
-          <MdOutlineTravelExplore className="text-blue-600 text-4xl" />
-          <span className="text-gray-700">Tourist Stories</span>
+        <h2 className="text-3xl font-bold flex items-center gap-2">
+          <MdOutlineTravelExplore className=" text-4xl text-center" />
+          <span className="">Tourist Stories</span>
         </h2>
         <Link
           to="/stories"
@@ -49,7 +49,7 @@ const StoriesSection = () => {
         {stories.map((story, idx) => (
           <div
             key={idx}
-            className="relative bg-white p-6 rounded-r-3xl shadow-2xl hover:shadow-blue-200 transition duration-300 flex flex-col justify-between border-t-12 border-[#cbe7f4] border-l-12"
+            className="relative bg-base-200 p-6 rounded-r-3xl shadow-2xl hover:shadow-blue-200 transition duration-300 flex flex-col justify-between border-t-12 border-[#cbe7f4] border-l-12"
           >
             <div className="absolute top-[-20px] left-5 bg-[#63aedc] text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
               Travel Story
@@ -68,7 +68,7 @@ const StoriesSection = () => {
               {story.packageName}
             </p>
 
-            <p className="text-gray-600 text-[15px] italic mb-4 font-medium leading-relaxed">
+            <p className=" text-[15px] italic mb-4 font-medium leading-relaxed">
               "{story.story}"
             </p>
 

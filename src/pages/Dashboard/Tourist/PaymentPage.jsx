@@ -63,7 +63,8 @@ const CheckoutForm = ({ booking, onSuccess }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto p-6 bg-white rounded shadow">
+    <div className="">
+      <form onSubmit={handleSubmit} className="max-w-6xl mt-24  mx-auto p-6  rounded shadow bg-white/20">
       <h2 className="text-xl mb-4">Pay for {booking.packageName}</h2>
       <p className="mb-2">Amount: ${booking.price.toFixed(2)}</p>
       <CardElement
@@ -74,15 +75,16 @@ const CheckoutForm = ({ booking, onSuccess }) => {
           },
         }}
       />
-      {error && <p className="text-red-600 mt-2">{error}</p>}
+      {error && <p className="text-error mt-2">{error}</p>}
       <button
         type="submit"
         disabled={!stripe || processing}
-        className="mt-4 px-4 py-2 bg-blue-600 text-white rounded disabled:bg-gray-400"
+        className="mt-4 px-4 py-2 bg-slate-600  rounded disabled:bg-gray-400"
       >
         {processing ? "Processing..." : "Pay Now"}
       </button>
     </form>
+    </div>
   );
 };
 

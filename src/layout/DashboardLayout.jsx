@@ -1,5 +1,5 @@
 
-import { Link, Outlet } from "react-router";
+import { Link, Outlet, useNavigate } from "react-router";
 import { useState } from "react";
 import useAuth from "../hooks/useAuth";
 import useRole from "../hooks/useRole";
@@ -12,12 +12,17 @@ import {
   FaUserShield,
   FaBars,
   FaSignOutAlt,
+  FaSun,
+  FaMoon,
 } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
 import Loading from "../pages/loading/Loading";
+import Navbar from "../components/Navbar/Navbar";
+import { useTheme } from "../context/ThemeProvider";
 
 const DashboardLayout = () => {
-  const { user, logOut } = useAuth();
+  const { user } = useAuth();
+  const { darkMode, toggleTheme } = useTheme();
   const { role, loading } = useRole();
   const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -108,10 +113,10 @@ const DashboardLayout = () => {
   );
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-br from-[#e0f4ff] via-white to-[#d3edfa]">
+    <div className="flex min-h-screen bg-base-300">
       {/* Sidebar */}
       <aside
-        className={`w-4/9 md:w-64 lg:block bg-gradient-to-br from-[#63aedc] via-[#4194cc] to-[#2a75b3] text-white p-6 transition-all ${
+        className={`w-4/9 md:w-64 lg:block bg-[#2a75b3]/60 dark:bg-[#1a4f73]/60 p-6 transition-all ${
           drawerOpen ? "block" : "hidden"
         }`}
       >
@@ -120,14 +125,27 @@ const DashboardLayout = () => {
           <h1 className="text-lg md:text-xl font-semibold ">TOURISM FLOW</h1>
         </div>
         <div className="text-xl md:text-2xl font-bold mb-10 flex items-center gap-2 mt-5">
-          <MdDashboard className="text-white text-3xl" />
+          <MdDashboard className=" text-3xl" />
           <span className="tracking-widest">Dashboard</span>
         </div>
-
+          <Link to="/"
+              className="  font-medium   transition"
+            >
+              ← Go Home
+            </Link>
         <ul className="space-y-4">{menuItems}</ul>
+        <div className="mt-5">
+            <button
+          onClick={toggleTheme}
+          className="p-2 rounded-full  transition"
+          aria-label="Toggle theme"
+        >
+          {darkMode ? <FaSun className="text-yellow-300" size={24} /> : <FaMoon className="text-yellow-300" size={24} />}
+        </button>
+          </div>
 
         {/* Footer */}
-        <div className="mt-36 bg-white/10   backdrop-blur-md rounded-xl p-4 text-center text-white shadow-inner border-t border-white/30">
+        <div className="mt-36   backdrop-blur-md rounded-xl p-4 text-center  shadow-inner border-t border-white/30">
   <div className="flex flex-col items-center gap-2">
     <img
       src={user?.photoURL || logo}
@@ -136,12 +154,11 @@ const DashboardLayout = () => {
     />
     <div className="text-sm leading-tight">
       <p className="font-semibold">{user?.displayName || "Tourist User"}</p>
-      <p className="text-white/80">{user?.email}</p>
+      <p className="">{user?.email}</p>
     </div>
   </div>
 </div>
       </aside>
-
       {/* Mobile Toggle Button */}
       <button
         className="lg:hidden fixed top-5 left-5 z-50 bg-[#2a75b3] text-white p-2 rounded-full shadow-lg"
@@ -151,7 +168,8 @@ const DashboardLayout = () => {
       </button>
 
       {/* Main Content */}
-      <main className="w-5/9 md:w-full flex-1 p-6 md:p-10">
+      <main className="w-5/9 md:w-full flex-1 px-10 py-10">
+      
         <Outlet />
       </main>
     </div>

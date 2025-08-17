@@ -5,14 +5,15 @@ import { Link } from "react-router";
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-br from-[#0e2a47] via-[#143d5c] to-[#1b5072] text-white py-10 px-6  shadow-inner relative z-10">
+    <footer className="py-20 px-4 md:px-16 lg:px-36 border-t border-gray-200 border shadow-lg relative z-10 bg-[#2a75b3]/60 dark:bg-[#1a4f73]/60
+      bg-blend-soft-light backdrop-blur-lg">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 items-center text-center md:text-left">
         {/* Logo + Name */}
         <div className="flex items-center justify-center md:justify-start gap-3">
           <img src={logo} alt="Logo" className="w-12 h-12 rounded-full shadow-md border" />
           <div>
             <h3 className="text-xl font-semibold tracking-wide">Tourism Flow</h3>
-            <p className="text-sm text-gray-300">Explore Bangladesh with us</p>
+            <p className="text-sm ">Explore Bangladesh with us</p>
           </div>
         </div>
 
@@ -68,7 +69,7 @@ const Footer = () => {
       </div>
 
       {/* Bottom Text */}
-      <div className="text-center mt-10 text-sm text-gray-400 border-t pt-4 border-white/20">
+      <div className="text-center mt-10 text-sm border-t pt-4 border-gray-500">
         &copy; {new Date().getFullYear()} Tourism Flow. All rights reserved.
       </div>
     </footer>

@@ -46,22 +46,22 @@ const Community = () => {
   }
 
   return (
-    <div className="min-h-screen px-6 md:px-20 py-16 bg-gradient-to-br from-[#e0f4ff] via-[#f7fbff] to-[#e0f4ff]">
+    <div className="min-h-screen px-4 md:px-16 lg:px-36 pt-16 pb-10">
       <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-white flex items-center justify-center gap-2">
+        <h2 className="text-4xl font-bold flex items-center justify-center gap-2">
           <MdPeopleAlt className="text-[#2a75b3] text-5xl" />
           <span className="text-[#2a75b3]">Our Traveler's Community</span>
         </h2>
-        <p className="text-[#2a75b3] mt-3 max-w-xl mx-auto">
+        <p className="mt-3 max-w-xl mx-auto">
           Dive into stories from real travelers who explored with us!
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4 gap-8">
         {stories.map((story, idx) => (
           <div
             key={idx}
-            className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-blue-200 transition-all flex flex-col"
+            className=" backdrop-blur-lg rounded-2xl p-6 shadow-lg hover:shadow-blue-200 border-blue-300 border transition-all flex flex-col"
           >
             <img
               src={story.touristImage}
@@ -75,7 +75,7 @@ const Community = () => {
             <p className="text-sm font-semibold text-[#2a75b3] mb-2">
               {story.packageName}
             </p>
-            <p className="text-gray-700 text-sm italic mb-4 leading-relaxed">
+            <p className=" text-sm italic mb-4 leading-relaxed">
               "{story.story}"
             </p>
 

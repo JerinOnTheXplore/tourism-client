@@ -5,7 +5,7 @@ import Select from "react-select";
 import Loading from "../../loading/Loading";
 
 const roleOptions = [
-  { value: "all", label: "All Roles" },
+  { value: "all", label: "All Roles"},
   { value: "tourist", label: "Tourist" },
   { value: "tourGuide", label: "Tour Guide" },
   { value: "admin", label: "Admin" },
@@ -59,7 +59,7 @@ const ManageUsers = () => {
           onChange={(e) => setSearch(e.target.value)}
         />
 
-        <div className="w-full md:w-1/3">
+        <div className="w-full bg-base-100 text-[#2a75b3]/60 dark:text-[#1a4f73]/60 md:w-1/3">
           <Select
             options={roleOptions}
             defaultValue={roleOptions[0]}
@@ -84,7 +84,7 @@ const ManageUsers = () => {
             <tbody>
               {currentUsers.length === 0 ? (
                 <tr>
-                  <td colSpan="4" className="text-center py-6 text-gray-500">
+                  <td colSpan="4" className="text-center py-6">
                     No users found
                   </td>
                 </tr>

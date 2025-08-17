@@ -88,10 +88,10 @@ const MyBookings = () => {
   if (bookings.length === 0) return <div className="text-center">No bookings found.</div>;
 
   return (
-    <div className="overflow-x-auto p-4">
+    <div className="overflow-x-auto p-4 bg-base-300">
       <table className="min-w-full border-collapse border border-gray-300">
         <thead>
-          <tr className="bg-gray-100">
+          <tr className="bg-[#2a75b3]/60 dark:bg-[#1a4f73]/60">
             <th className="border px-4 py-2 text-left">Package</th>
             <th className="border px-4 py-2 text-left">Tour Guide</th>
             <th className="border px-4 py-2 text-left">Tour Date</th>
@@ -104,7 +104,7 @@ const MyBookings = () => {
           {currentBookings.map((booking) => {
             const isPending = booking.status?.toLowerCase() === "pending";
             return (
-              <tr key={booking._id} className="hover:bg-gray-50">
+              <tr key={booking._id} className="">
                 <td className="border px-4 py-2">{booking.packageName}</td>
                 <td className="border px-4 py-2">{booking.guideName || "N/A"}</td>
                 <td className="border px-4 py-2">
@@ -117,13 +117,13 @@ const MyBookings = () => {
                     <>
                       <button
                         onClick={() => handlePay(booking._id)}
-                        className="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700"
+                        className="bg-[#2a75b3]/60 dark:bg-[#1a4f73]/60 text-white px-3 py-1 rounded hover:bg-slate-700"
                       >
                         Pay
                       </button>
                       <button
                         onClick={() => handleCancel(booking._id)}
-                        className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700"
+                        className="btn btn-outline px-3 py-1 rounded "
                       >
                         Cancel
                       </button>

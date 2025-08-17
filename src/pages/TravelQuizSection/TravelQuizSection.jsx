@@ -6,21 +6,21 @@ import TypingHeading from "../../components/TypingHeading";
 
 const TravelQuizSection = () => {
   return (
-    <section className="bg-gradient-to-br from-blue-50 to-white py-20 px-6">
-      <div className="max-w-5xl mx-auto text-center bg-gradient-to-br from-[#63aedc] via-[#4194cc] to-[#2a75b3] rounded">
+    <section className=" py-20 px-4 md:px-16 lg:px-36">
+      <div className="max-w-7xl mx-auto text-center bg-[#2a75b3]/60 dark:bg-[#1a4f73]/60 rounded">
         <motion.div
           className="inline-block"
           initial={{ scale: 0.9 }}
-          whileHover={{ scale: 1.05 }}
+          whileHover={{ scale: 1.25 }}
           whileTap={{ scale: 0.95 }}
           transition={{ duration: 0.3 }}
         >
-          <div className="bg-gradient-to-br from-[#e0f4ff] via-[#f7fbff] to-[#e0f4ff] p-8 rounded-xl shadow-xl border border-blue-200 max-w-xl mx-auto">
-            <FaGlobeAsia className="text-5xl text-[#2a75b3] mx-auto mb-4" />
+          <div className=" p-8 rounded-xl backdrop-blur-lg shadow-xl border border-blue-200 max-w-xl mx-auto">
+            <FaGlobeAsia className="text-5xl  mx-auto mb-4" />
             
             <TypingHeading />
 
-            <p className="text-gray-600 mb-6">
+            <p className=" mb-6">
               Not sure where to go next? Take a quick quiz and we’ll match you with the perfect place.
             </p>
             <Link

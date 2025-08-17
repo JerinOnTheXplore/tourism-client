@@ -4,24 +4,23 @@ import profileImg from "../../assets/profile.jpg"
 
 const About = () => {
     return (
-        <div className="min-h-screen px-6 md:px-20 py-16 bg-gradient-to-br from-[#a9d4f0] via-[#88c1e8] to-[#a9d4f0]
- text-white">
-      <div className="max-w-5xl mx-auto text-center">
-        <h1 className="text-4xl md:text-5xl text-[#2a75b3] font-extrabold mb-6">Meet the Developer</h1>
-        <p className="text-lg text-[#2a75b3] mb-10 leading-relaxed">
+        <div className="min-h-screen px-4 md:px-16 lg:px-36 py-16">
+      <div className="max-w-7xl mx-auto text-center">
+        <h1 className="text-4xl md:text-5xl text-[#2a75b3] font-bold mb-6">Meet the Developer</h1>
+        <p className="text-lg mb-10 leading-relaxed">
           I’m <span className="font-semibold">Jerin</span>, learning full-stack development with a strong foundation in
           both frontend and backend technologies. I specialize in building dynamic web apps using React, Node.js, Express, and MongoDB.
         </p>
 
         {/* Profile Card */}
-        <div className="bg-blue-50 text-[#2a75b3] p-8 rounded-tr-4xl  rounded-br-2xl shadow-2xl mb-14 border-t-12 border-[#2a75b3] border-r-12">
+        <div className="bg-[#2a75b3]/60 dark:bg-[#1a4f73]/60  p-8 rounded-tr-4xl  rounded-br-2xl shadow-2xl mb-14 border-t-12 border-[#2a75b3] border-r-12">
           <img
             src={profileImg} 
             alt="Developer"
             className="w-32 h-32 rounded-full mx-auto border-4 border-[#4194cc] mb-4 object-cover"
           />
           <h2 className="text-2xl font-bold">Jerin</h2>
-          <p className="text-sm text-gray-600 italic">Learning  MERN Stack </p>
+          <p className="text-sm  italic">Learning  MERN Stack </p>
 
           <div className="flex justify-center mt-4 gap-6 text-xl">
             <a href="https://github.com/Jerin-dev" target="_blank" rel="noreferrer">
@@ -38,27 +37,27 @@ const About = () => {
 
         {/* Projects Section */}
         <h3 className="text-3xl font-bold mb-6 text-[#2a75b3]">Notable Projects</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left text-gray-100">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left ">
           
           <div className="bg-[#2a75b3]/60 p-6 rounded-lg shadow-lg hover:shadow-xl transition">
             <h4 className="text-xl font-bold mb-2">Online Group Study Assignment Platform</h4>
             <p className="text-sm mb-2">A MERN stack platform where students can create, submit, and evaluate peer assignments.</p>
-            <a href="https://online-group-study-e3eaf.web.app" target="_blank" className="underline text-sm text-blue-200">Live Site</a>
+            <a href="https://online-group-study-e3eaf.web.app" target="_blank" className="underline text-sm font-bold">Live Site</a>
           </div>
           <div className="bg-[#2a75b3]/60 p-6 rounded-lg shadow-lg hover:shadow-xl transition">
             <h4 className="text-xl font-bold mb-2">Tech Accessories Subscription Box</h4>
             <p className="text-sm mb-2">A winter-themed subscription box system with review and protected routes.</p>
-            <a href="https://byte-box-service.web.app" target="_blank" className="underline text-sm text-blue-200">Live Site</a>
+            <a href="https://byte-box-service.web.app" target="_blank" className="underline text-sm font-bold ">Live Site</a>
           </div>
           <div className="bg-[#2a75b3]/60 p-6 rounded-lg shadow-lg hover:shadow-xl transition">
             <h4 className="text-xl font-bold mb-2">Plant Care Tracker</h4>
             <p className="text-sm mb-2">Track your plant watering and care routines with calendar views and alerts.</p>
-            <a href="https://plant-care-tracker-80dfe.web.app" target="_blank" className="underline text-sm text-blue-200">Live Site</a>
+            <a href="https://plant-care-tracker-80dfe.web.app" target="_blank" className="underline text-sm  font-bold">Live Site</a>
           </div>
         </div>
 
         {/* Footer Note */}
-        <div className="mt-20 text-sm text-[#2a75b3]">
+        <div className="mt-20 text-sm font-bold text-[#2a75b3] dark:text-[#5dade2]">
           &copy; {new Date().getFullYear()} Jerin — Built with 💙 React & MongoDB
         </div>
       </div>

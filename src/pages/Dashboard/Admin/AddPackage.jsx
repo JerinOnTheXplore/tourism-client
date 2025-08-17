@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 const AddPackage = () => {
   const { register, handleSubmit, reset } = useForm();
   const [images, setImages] = useState([]);
+  const [imageUrl, setImageUrl] = useState("");
 
   // Handle form submit
   const onSubmit = async (data) => {
@@ -22,7 +23,10 @@ const AddPackage = () => {
     };
 
     try {
-      const res = await axios.post("https://tourism-server-delta.vercel.app/api/packages", packageData);
+      const res = await axios.post(
+        "https://tourism-server-delta.vercel.app/api/packages",
+        packageData
+      );
       if (res.data.insertedId || res.data.success) {
         Swal.fire("Success", "Package added successfully!", "success");
         reset();
@@ -35,12 +39,12 @@ const AddPackage = () => {
   };
 
   // Handle image add
-  const handleAddImage = () => {
-    const input = document.getElementById("imageUrl");
-    const url = input.value.trim();
+  const handleAddImage = (e) => {
+    e.preventDefault(); 
+    const url = imageUrl.trim();
     if (url && !images.includes(url)) {
       setImages([...images, url]);
-      input.value = "";
+      setImageUrl(""); // clear input
     }
   };
 
@@ -50,11 +54,12 @@ const AddPackage = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white shadow rounded-lg">
-      <h2 className="text-3xl font-bold mb-6 text-center">Add New Tour Package</h2>
+    <div className="max-w-4xl bg-base-100 mx-auto p-6  shadow rounded-lg">
+      <h2 className="text-3xl font-bold mb-6 text-center">
+        Add New Tour Package
+      </h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-
         {/* Package Name */}
         <div>
           <label className="block mb-1 font-semibold">Package Name</label>
@@ -102,11 +107,14 @@ const AddPackage = () => {
 
         {/* Image Gallery */}
         <div>
-          <label className="block mb-1 font-semibold">Gallery (Image URLs)</label>
+          <label className="block mb-1 font-semibold">
+            Gallery (Image URLs)
+          </label>
           <div className="flex gap-2 mb-3">
             <input
               type="url"
-              id="imageUrl"
+              value={imageUrl}
+              onChange={(e) => setImageUrl(e.target.value)}
               placeholder="Enter image URL"
               className="input input-bordered w-full"
             />
@@ -122,7 +130,10 @@ const AddPackage = () => {
           {images.length > 0 && (
             <div className="grid grid-cols-3 md:grid-cols-4 gap-3">
               {images.map((img, idx) => (
-                <div key={idx} className="relative border rounded overflow-hidden">
+                <div
+                  key={idx}
+                  className="relative border rounded overflow-hidden"
+                >
                   <img
                     src={img}
                     alt={`gallery-${idx}`}
@@ -131,7 +142,7 @@ const AddPackage = () => {
                   <button
                     type="button"
                     onClick={() => handleRemoveImage(img)}
-                    className="absolute top-1 right-1 bg-red-600 text-white rounded-full p-1 text-xs hover:bg-red-800"
+                    className="absolute top-1 right-1 bg-red-600  rounded-full p-1 text-xs hover:bg-red-800"
                   >
                     ✕
                   </button>
@@ -141,7 +152,7 @@ const AddPackage = () => {
           )}
         </div>
 
-        <button type="submit" className="btn btn-success w-full">
+        <button type="submit" className="btn bg-[#2a75b3]/60 dark:bg-[#1a4f73]/60 w-full">
           Save Package
         </button>
       </form>

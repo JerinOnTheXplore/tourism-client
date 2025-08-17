@@ -7,7 +7,7 @@ import banner3 from '../../assets/banner3.jpg';
 
 const Banner = () => {
   return (
-    <div className="relative overflow-x-hidden">
+    <div className="relative overflow-x-hidden px-4 md:px-16 lg:px-36">
       {/* Carousel */}
       <Carousel
         autoPlay
@@ -20,10 +20,10 @@ const Banner = () => {
         swipeable
       >
         {[banner1, banner2, banner3].map((img, idx) => (
-          <div key={idx} className="relative h-[70vh] w-full overflow-hidden">
+          <div key={idx} className="relative h-80 md:h-112 lg:h-136 w-full overflow-hidden">
             <img src={img} alt={`Banner ${idx + 1}`} className="object-cover h-full w-full" />
             <div className="absolute inset-0 bg-opacity-30 flex items-center justify-center   text-center px-4">
-              <div className='bg-base-100 px-5 pt-4 pb-16 rounded-tl-3xl rounded-br-4xl'>
+              <div className=' px-5 pt-4 pb-16 rounded-tl-4xl rounded-br-4xl backdrop-blur-lg border border-dotted border-gray-300'>
                 <h2 className="text-4xl md:text-6xl font-bold mb-3 drop-shadow">
                   Discover the Beauty of Bangladesh
                 </h2>

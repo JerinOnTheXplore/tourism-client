@@ -21,18 +21,18 @@ const WhyChooseUsSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-white px-6">
-      <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-4xl font-bold mb-10 text-gray-800">Why Choose Us?</h2>
+    <section className="py-20 px-4 md:px-16 lg:px-36">
+      <div className="max-w-8xl mx-auto text-center">
+        <h2 className="text-4xl font-bold mb-10 ">Why Choose Us?</h2>
         <div className="grid md:grid-cols-3 gap-10">
           {benefits.map((item, idx) => (
             <div
               key={idx}
-              className="bg-gradient-to-br from-blue-100 via-white to-blue-50 rounded-xl p-8 shadow-lg hover:shadow-xl transition duration-300"
+              className="bg-base-300 flex flex-col justify-center items-center rounded-xl p-8 shadow-lg hover:shadow-xl transition duration-300 border border-gray-500"
             >
-              <div className="text-4xl text-blue-600 mb-4">{item.icon}</div>
-              <h4 className="text-xl font-semibold text-blue-800 mb-2">{item.title}</h4>
-              <p className="text-gray-600">{item.desc}</p>
+              <div className="text-4xl  text-blue-600 mb-4">{item.icon}</div>
+              <h4 className="text-xl font-semibold text-blue-600 mb-2">{item.title}</h4>
+              <p className="">{item.desc}</p>
             </div>
           ))}
         </div>

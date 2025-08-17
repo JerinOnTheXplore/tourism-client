@@ -24,11 +24,11 @@ const Trips = () => {
   if (loading) return <p className="text-center mt-20"><Loading></Loading></p>;
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-10">
+    <div className=" px-4 md:px-16 lg:px-36 py-10">
       <h2 className="text-3xl font-bold mb-8 text-center">All Trips</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4 gap-6">
         {packages.map((pkg) => (
-          <div key={pkg._id} className="border rounded-lg shadow p-5 space-y-3">
+          <div key={pkg._id} className="border rounded-lg shadow p-5 space-y-3 bg-base-300">
             <img
               src={pkg.photo}
               alt={pkg.title}
@@ -40,7 +40,7 @@ const Trips = () => {
             <p><strong>Price:</strong> ৳{pkg.price}</p>
             <Link
               to={`/packages/${pkg._id}`}
-              className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded mt-3"
+              className="inline-block bg-slate-500 hover:bg-slate-600 text-white px-4 py-2 rounded mt-3"
             >
               View Details
             </Link>

@@ -103,7 +103,7 @@ const Login = () => {
 
 
   return (
-    <div className="min-h-screen w-full flex flex-col lg:flex-row">
+    <div className="min-h-screen w-full flex flex-col lg:flex-row bg-base-100 px-4 md:px-16 lg:px-36">
       {/* Left Image */}
       <div className="lg:w-1/3 w-full h-64 lg:h-auto">
         <img
@@ -114,21 +114,21 @@ const Login = () => {
       </div>
 
       {/* Right Form */}
-      <div className="lg:w-2/3 w-full flex items-center justify-center bg-gradient-to-br from-[#f9f9f9] to-[#eef2f3] px-6 py-12">
-        <div className="w-full max-w-xl bg-white  p-8 ">
-          <h2 className="text-3xl font-bold text-center text-gray-700 mb-6">
+      <div className="lg:w-2/3 w-full flex items-center justify-center  px-6 py-12">
+        <div className="w-full max-w-xl bg-base-300  p-8 ">
+          <h2 className="text-3xl font-bold text-center  mb-6">
             Welcome Back To Your TourismFlow
           </h2>
 
           <form onSubmit={handleLogin} className="space-y-6">
             {/* Email */}
             <div>
-              <label className="block text-sm text-gray-600 mb-1">Email</label>
+              <label className="block text-sm mb-1">Email</label>
               <input
                 name="email"
                 type="email"
                 placeholder="Email Address"
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white bg-opacity-70 placeholder:text-gray-400 text-sm"
+                className="w-full px-4 py-3 border border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400  bg-opacity-70 placeholder:text-gray-400 text-sm"
               />
             </div>
 
@@ -139,7 +139,7 @@ const Login = () => {
                 name="password"
                 type="password"
                 placeholder="********"
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white bg-opacity-70 placeholder:text-gray-400 text-sm"
+                className="w-full px-4 py-3 border  rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400  bg-opacity-70  text-sm"
               />
             </div>
 
@@ -148,7 +148,7 @@ const Login = () => {
   <button
     type="button"
     onClick={handleForgotPassword}
-    className="text-sm text-gray-700 hover:underline"
+    className="text-sm hover:underline"
   >
     Forgot password?
   </button>
@@ -157,16 +157,16 @@ const Login = () => {
 
             {/* Bottom Links & Login */}
             <div className="flex justify-between items-center text-sm">
-              <p className="text-gray-600">
+              <p className="">
                 Don’t have an account?{" "}
-                <Link to="/register" className="text-blue-600 hover:underline">
+                <Link to="/register" className="text-blue-400 hover:underline">
                   Sign up
                 </Link>
               </p>
 
               <button
                 type="submit"
-                className=" bg-gray-600 hover:bg-slate-700 text-white px-5 py-2 rounded-md font-semibold text-sm"
+                className=" bg-base-100 hover:bg-slate-700 px-5 py-2 rounded-md font-semibold text-sm"
               >
                 Login
               </button>
@@ -174,22 +174,22 @@ const Login = () => {
 
             {/* Divider */}
             <div className="flex items-center gap-3">
-              <div className="flex-1 h-px bg-gray-300"></div>
-              <span className="text-gray-500 text-sm">OR</span>
-              <div className="flex-1 h-px bg-gray-300"></div>
+              <div className="flex-1 h-px border"></div>
+              <span className=" text-sm">OR</span>
+              <div className="flex-1 h-px border"></div>
             </div>
 
             {/* Google Sign In */}
             <button onClick={handleGoogleSignIn}
               type="button"
-              className="flex items-center justify-center gap-3 w-full border border-gray-300 py-2 rounded-md text-sm hover:bg-gray-100 transition"
+              className="flex items-center justify-center gap-3 w-full border border-gray-300 py-2 rounded-md text-sm  transition"
             >
               <FcGoogle size={22} />
               Sign in with Google
             </button>
           </form>
 
-          <p className="text-center text-xs text-gray-400 mt-6">
+          <p className="text-center text-xs mt-6">
             © 2025 TourismFlow. All rights reserved.
           </p>
         </div>

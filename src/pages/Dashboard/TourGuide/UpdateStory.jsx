@@ -80,8 +80,8 @@ const UpdateStory = () => {
   if (loading || !story) return <Loading />;
 
   return (
-    <div className="max-w-3xl mx-auto py-10 px-4">
-      <h2 className="text-3xl font-bold text-center mb-6 text-slate-700">Update Story</h2>
+    <div className="max-w-5xl mx-auto py-10 px-4">
+      <h2 className="text-3xl font-bold text-center mb-6 ">Update Story</h2>
 
       <div className="grid gap-4">
         <div>
@@ -136,7 +136,7 @@ const UpdateStory = () => {
           </div>
         </div>
 
-        <button onClick={handleUpdate} className="btn bg-[#2a75b3] text-stone-50 mt-6">
+        <button onClick={handleUpdate} className="btn bg-[#2a75b3] font-semibold mt-6">
           Save Changes
         </button>
       </div>

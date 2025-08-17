@@ -49,7 +49,7 @@ const PackagesAndGuides = () => {
   if (errorPackages || errorGuides) return <p className="text-center py-10 text-red-500">Failed to load data</p>;
 
   return (
-    <section className="py-10 px-6 md:px-20">
+    <section className="py-10 md:16 px-4 md:px-16 lg:px-36">
       <h2
         className="text-4xl font-bold text-center mb-12 tracking-wide 
              bg-gradient-to-r from-gray-700 via-gray-500 to-gray-400 
@@ -70,7 +70,7 @@ const PackagesAndGuides = () => {
             {packages.map((pkg) => (
               <div
                 key={pkg._id}
-                className="relative bg-gradient-to-br from-[#cceeff] via-[#e8f4ff] to-[#fdf7f4] p-6 shadow-xl border border-white border-opacity-20 transform hover:scale-105 transition duration-500"
+                className="relative bg-base-300 p-6 shadow-xl border border-white border-opacity-20 transform hover:scale-105 transition duration-500"
                 data-aos="fade-up"
               >
                 <div className="absolute -top-6 -left-6 bg-slate-500 text-white p-3 rounded-full shadow-lg">
@@ -82,16 +82,16 @@ const PackagesAndGuides = () => {
                   className="rounded-xl h-52 w-full object-cover mb-4 shadow-md border-2 border-white"
                 />
                 <div className="space-y-2">
-                  <h3 className="text-2xl font-bold text-gray-600">{pkg.title}</h3>
-                  <p className="text-sm text-gray-500 flex items-center gap-2">
-                    <FaSuitcaseRolling className="text-gray-400 font-semibold" /> Type: {pkg.type}
+                  <h3 className="text-2xl font-bold text-clip">{pkg.title}</h3>
+                  <p className="text-sm  flex items-center gap-2">
+                    <FaSuitcaseRolling className=" font-semibold" /> Type: {pkg.type}
                   </p>
-                  <p className="text-lg text-slate-600 font-semibold flex items-center gap-2">
+                  <p className="text-lg  font-semibold flex items-center gap-2">
                     <FaDollarSign /> {pkg.price} BDT
                   </p>
                   <Link
                     to={`/packages/${pkg._id}`}
-                    className="inline-block mt-3 bg-slate-500 hover:bg-blue-400 text-white text-sm px-5 py-2 rounded-sm transition"
+                    className="inline-block mt-3 bg-slate-500 hover:bg-slate-600 text-white text-sm px-5 py-2 rounded-sm transition"
                   >
                     View Package
                   </Link>

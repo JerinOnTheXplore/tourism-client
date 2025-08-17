@@ -65,9 +65,9 @@ const AddStory = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-4 md:p-8">
-      <h2 className="text-3xl font-bold text-center text-[#2a75b3] mb-6">📝 Add a New Story</h2>
-      <form onSubmit={handleSubmit} className="space-y-5 bg-white p-6 rounded-lg shadow">
+    <div className="max-w-6xl mx-auto p-4 md:p-8 bg-base-300">
+      <h2 className="text-3xl font-bold text-center text-[#2a75b3]/60 dark:text-[#1a4f73]/60 mb-6">📝 Add a New Story</h2>
+      <form onSubmit={handleSubmit} className="space-y-5 bg-base-200 p-6 rounded-lg shadow">
         <div>
           <label className="block font-semibold mb-1">Title</label>
           <input
@@ -119,19 +119,19 @@ const AddStory = () => {
             multiple
             accept="image/*"
             onChange={handleImageChange}
-            className="w-full file:py-2 file:px-4 file:border-0 file:bg-[#2a75b3] file:text-white file:rounded file:cursor-pointer"
+            className="w-full file:py-2 file:px-4 file:border-0 file:bg-[#2a75b3]/60 dark:file:bg-[#1a4f73]/60 file:rounded file:cursor-pointer"
           />
         </div>
 
         <button
           type="submit"
-          className="bg-[#2a75b3] hover:bg-[#2a74a0] text-white px-6 py-2 rounded shadow w-full"
+          className="bg-[#2a75b3]/60 dark:bg-[#1a4f73]/60 hover:bg-[#2a74a0] font-bold px-6 py-2 rounded shadow w-full"
         >
           Submit Story
         </button>
         <button
               onClick={() => navigate(-1)}
-              className="bg-[#2a75b3] text-stone-50 font-semibold px-5 py-2 rounded shadow-md hover:bg-[#2a75b3] transition w-full mb-4"
+              className="bg-[#2a75b3]/60 dark:bg-[#1a4f73]/60  font-bold px-5 py-2 rounded shadow-md hover:bg-[#2a75b3] transition w-full mb-4"
             >
               ← Go Back
             </button>

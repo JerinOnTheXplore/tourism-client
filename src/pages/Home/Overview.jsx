@@ -10,7 +10,7 @@ const Overview = () => {
   }, []);
 
   return (
-    <section className=" py-36 px-4 lg:px-20">
+    <section className="py-16 md:py-36 px-4 md:px-16 lg:px-36">
       <div className="max-w-7xl mx-auto space-y-20">
         {/* Section Title */}
         <div data-aos="zoom-in" className="text-center">

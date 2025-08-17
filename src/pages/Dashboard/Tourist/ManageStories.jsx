@@ -48,11 +48,11 @@ const ManageStories = () => {
   }
 
   return (
-    <div>
+    <div className="mt-16">
       <h2 className="text-2xl font-bold text-center mb-6">Your Added Stories</h2>
       <div className="grid md:grid-cols-2 gap-6">
         {stories.map((story) => (
-          <div key={story._id} className="bg-white rounded-xl shadow-lg p-4">
+          <div key={story._id} className="bg-base-100 rounded-xl shadow-lg p-4">
             <div className="flex items-center gap-4 mb-4">
               <img
                 src={story.touristImage || "/default-user.jpg"}
@@ -61,10 +61,10 @@ const ManageStories = () => {
               />
               <div>
                 <h3 className="font-bold">{story.touristName}</h3>
-                <p className="text-sm text-gray-500 font-bold">{story.packageName}</p>
+                <p className="text-sm font-bold">{story.packageName}</p>
               </div>
             </div>
-            <p className="text-gray-700 font-semibold mb-3">{story.story.slice(0, 100)}...</p>
+            <p className=" font-semibold mb-3">{story.story.slice(0, 100)}...</p>
             <div className="grid grid-cols-2 gap-2 mb-4">
               {story.images.map((img, index) => (
                 <img
