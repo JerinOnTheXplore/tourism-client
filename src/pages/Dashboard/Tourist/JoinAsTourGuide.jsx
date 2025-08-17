@@ -50,7 +50,7 @@ const JoinAsTourGuide = () => {
 
   return (
     <div className="max-w-xl mx-auto py-10 px-4">
-      <h2 className="text-3xl font-bold text-center text-[#2a75b3]/60 dark:[#1a4f73]/60 mb-6">
+      <h2 className="text-3xl font-bold text-center mb-6">
         Join as Tour Guide
       </h2>
 

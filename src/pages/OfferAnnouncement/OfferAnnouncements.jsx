@@ -41,24 +41,24 @@ const offers = [
 
 const OfferAnnouncements = () => {
   return (
-    <div className="max-w-4xl mx-auto py-10 px-4">
-      <h2 className="text-4xl font-bold text-center text-blue-700 mb-8">
+    <div className="max-w-7xl mx-auto py-10 px-4">
+      <h2 className="text-4xl font-bold text-center  mb-8">
         Offer Announcements 🎉
       </h2>
-      <div className="space-y-6">
+      <div className="bg-base-100 space-y-6">
         {offers.map((offer, index) => (
           <div
             key={index}
-            className="bg-white shadow-md rounded-lg p-6 border-l-4 border-blue-400 hover:border-blue-600 transition"
+            className=" shadow-md rounded-lg p-6 border-l-4 border-blue-400 hover:border-blue-600 transition"
           >
             <div className="flex items-center gap-3 mb-2">
               {offer.icon}
-              <h3 className="text-xl font-semibold text-blue-800">
+              <h3 className="text-xl font-semibold ">
                 {offer.title}
               </h3>
             </div>
-            <p className="text-gray-700">{offer.description}</p>
-            <p className="text-sm text-gray-500 mt-2 italic">{offer.validity}</p>
+            <p className="">{offer.description}</p>
+            <p className="text-sm  mt-2 italic">{offer.validity}</p>
           </div>
         ))}
       </div>

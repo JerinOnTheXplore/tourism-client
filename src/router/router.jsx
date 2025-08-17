@@ -25,6 +25,7 @@ import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import OfferAnnouncements from "../pages/OfferAnnouncement/OfferAnnouncements";
 import QuizLanding from "../pages/QuizLanding/QuizLanding";
 import PrivateRoute from "../routes/PrivateRoute";
+import DashboardOverview from "../pages/Home/DashboardOverview";
 
 
 export const router = createBrowserRouter([
@@ -158,6 +159,12 @@ export const router = createBrowserRouter([
         path: "manage-users",
         element: <PrivateRoute>
           <ManageUsers></ManageUsers>
+        </PrivateRoute>
+      },
+      {
+        path: "/dashboard/overview",
+        element: <PrivateRoute>
+          <DashboardOverview></DashboardOverview>
         </PrivateRoute>
       },
       

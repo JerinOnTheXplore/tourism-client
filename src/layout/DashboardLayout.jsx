@@ -19,6 +19,7 @@ import { MdDashboard } from "react-icons/md";
 import Loading from "../pages/loading/Loading";
 import Navbar from "../components/Navbar/Navbar";
 import { useTheme } from "../context/ThemeProvider";
+import { FileBarChart2 } from "lucide-react";
 
 const DashboardLayout = () => {
   const { user } = useAuth();
@@ -37,8 +38,11 @@ const DashboardLayout = () => {
     <>
       {/* Shared for all logged in users */}
       <li>
-        <Link to="/dashboard/profile" className="menu-link">
+        <Link to="/dashboard/profile" className="menu-link ">
           <FaUser /> Manage Profile
+        </Link>
+        <Link to="/dashboard/overview" className="menu-link">
+          <FileBarChart2 /> Dashboard Overview
         </Link>
       </li>
 
@@ -133,7 +137,7 @@ const DashboardLayout = () => {
             >
               ← Go Home
             </Link>
-        <ul className="space-y-4">{menuItems}</ul>
+        <ul className="space-y-5">{menuItems}</ul>
         <div className="mt-5">
             <button
           onClick={toggleTheme}
