@@ -141,7 +141,7 @@ useEffect(() => {
           className="w-full h-full object-cover brightness-75 blur-[1px]"
         />
         <div className="absolute inset-0 bg-opacity-30 flex items-center justify-center  text-center">
-          <div className="px-5 pt-4 pb-16 rounded-tl-4xl rounded-br-4xl backdrop-blur-lg border border-dotted border-gray-300 space-y-3">
+          <div className="px-3 md:px-5 pt-4 pb-4 md:pb-10  rounded-tl-4xl rounded-br-4xl backdrop-blur-lg border border-dotted border-gray-300 space-y-3">
             <h1 className="text-3xl md:text-5xl font-bold">{pkg.title}</h1>
             <p className="text-lg font-light flex justify-center items-center gap-2">
               <FaMapMarkedAlt className=" font-bold" />{" "}

@@ -22,7 +22,7 @@ const Navbar = () => {
 
   const navLinkStyle =
     " hover:text-blue-300  dark:hover:text-blue-400 font-bold text-lg font-sans";
-  const activeStyle = "border-b-2 border-blue-200 dark:border-blue-400";
+  const activeStyle = "text-blue-500 dark:text-blue-400";
 
   const handleLogout = () => logOut();
 
