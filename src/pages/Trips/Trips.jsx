@@ -1,4 +1,4 @@
-// Trips.jsx 
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router";
@@ -7,7 +7,7 @@ import Loading from "../loading/Loading";
 const Trips = () => {
   const [packages, setPackages] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [sortOrder, setSortOrder] = useState(""); // 🔹 sorting state
+  const [sortOrder, setSortOrder] = useState(""); 
 
   useEffect(() => {
     axios
@@ -22,7 +22,7 @@ const Trips = () => {
       });
   }, []);
 
-  // 🔹 Handle sorting
+  // Handle sorting
   const handleSort = (order) => {
     setSortOrder(order);
     let sortedPackages = [...packages];
@@ -41,7 +41,7 @@ const Trips = () => {
       <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
         <h2 className="text-3xl font-bold text-center md:text-left">All Trips</h2>
 
-        {/* 🔹 Sorting Navbar */}
+        {/*Sorting Navbar */}
         <div className="flex gap-3 items-center">
           <span className="font-semibold">Sort by Price:</span>
           <button
@@ -63,7 +63,7 @@ const Trips = () => {
         </div>
       </div>
 
-      {/* 🔹 Equal Size Cards */}
+      {/*  Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-fr">
         {packages.map((pkg) => (
           <div
