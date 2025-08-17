@@ -6,6 +6,7 @@ import StoriesSection from './StoriesSection';
 import TravelQuizSection from '../TravelQuizSection/TravelQuizSection';
 import WhyChooseUsSection from '../WhyChooseUsSection/WhyChooseUsSection';
 import UpcomingEvents from './UpcomingEvents';
+import PhotoHighlights from './PhotoHighlights';
 
 
 
@@ -16,6 +17,7 @@ const Home = () => {
         <Banner></Banner>
         <Overview></Overview>
         <PackagesAndGuides></PackagesAndGuides>
+        <PhotoHighlights></PhotoHighlights>
         <UpcomingEvents></UpcomingEvents>
         <StoriesSection></StoriesSection>
         <TravelQuizSection></TravelQuizSection>
