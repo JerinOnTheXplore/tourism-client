@@ -102,28 +102,28 @@ const PackagesAndGuides = () => {
         </TabPanel>
 
         <TabPanel>
-          <div className="px-6 md:px-20 py-10">
-            <h2 className="text-2xl font-bold text-slate-700 mb-6 text-center flex items-center justify-center gap-2">
-              <MdTravelExplore className="text-blue-500 text-3xl" />
+          <div className=" px-4 md:px-16 lg:px-36 py-10">
+            <h2 className="text-2xl font-bold mb-6 text-center flex items-center justify-center gap-2">
+              <MdTravelExplore className=" text-3xl" />
               Meet Our Tour Guides
             </h2>
 
-            <div className="bg-white rounded-xl shadow-inner py-6 px-3">
+            <div className=" rounded-xl shadow-inner py-6">
               <Marquee pauseOnHover speed={50} gradient={true} gradientColor="#e0f4ff">
                 {guides.map((guide, idx) => (
                   <div
                     key={idx}
-                    className="w-48 mx-4 bg-[#f5faff] p-4 rounded-lg shadow hover:shadow-lg transition-transform duration-300 text-center"
+                    className="w-48 mx-4 bg-[#2a75b3]/60 dark:bg-[#1a4f73]/60 p-4 rounded-lg shadow hover:shadow-lg transition-transform duration-300 text-center"
                   >
                     <img
                       src={guide.photo}
                       alt={guide.name}
                       className="w-full h-32 object-cover rounded-md mb-2"
                     />
-                    <h3 className="text-base font-semibold text-gray-800">
+                    <h3 className="text-base font-semibold ">
                       {guide.name}
                     </h3>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm ">
                       {guide.experience} yrs experience
                     </p>
                     <Link

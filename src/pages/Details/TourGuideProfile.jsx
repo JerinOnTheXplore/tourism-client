@@ -58,8 +58,8 @@ const TourGuideProfile = () => {
   }
 
   return (
-    <div className="bg-gradient-to-br from-[#cde7f8] via-[#b5dcf3] to-[#a5d9e4] min-h-screen px-6 md:px-20 py-16 text-white">
-      <div className="max-w-5xl mx-auto bg-gradient-to-br from-[#e0f4ff] via-[#f7fbff] to-[#fefcfb] text-slate-800 rounded-3xl shadow-2xl p-8 md:p-14">
+    <div className=" min-h-screen px-6 md:px-20 py-16 ">
+      <div className="max-w-7xl mx-auto bg-[#2a75b3]/60 dark:bg-[#1a4f73]/60 rounded-3xl shadow-2xl p-8 md:p-14">
         <div className="flex flex-col md:flex-row gap-8 items-center">
           <img
             src={guide.photo}
@@ -67,14 +67,14 @@ const TourGuideProfile = () => {
             className="w-44 h-44 rounded-full border-4 border-blue-300 shadow-lg object-cover"
           />
           <div>
-            <h1 className="text-3xl font-bold mb-2 text-[#4194cc]">{guide.name}</h1>
-            <p className="text-md text-gray-700 mb-1">
+            <h1 className="text-3xl font-bold mb-2">{guide.name}</h1>
+            <p className="text-md  mb-1">
               <strong>Email:</strong> {guide.email}
             </p>
-            <p className="text-md text-gray-700 mb-1">
+            <p className="text-md  mb-1">
               <strong>Phone:</strong> {guide.phone || "N/A"}
             </p>
-            <p className="text-md text-gray-700">
+            <p className="text-md ">
               <strong>Experience:</strong> {guide.experience || "Not Specified"}
             </p>
           </div>
@@ -82,27 +82,27 @@ const TourGuideProfile = () => {
 
         {/* Stories Section */}
         <div className="mt-12">
-          <h2 className="text-2xl font-bold text-blue-700 flex items-center gap-2 mb-6">
-            <MdOutlineTravelExplore className="text-3xl text-blue-500" />
-            <span className="text-[#4194cc]">Stories by {guide.name}</span>
+          <h2 className="text-2xl font-bold  flex items-center gap-2 mb-6">
+            <MdOutlineTravelExplore className="text-3xl " />
+            <span className="">Stories by {guide.name}</span>
           </h2>
 
           {stories.length === 0 ? (
-            <p className="text-gray-500 italic">This guide hasn’t added any stories yet.</p>
+            <p className=" italic">This guide hasn’t added any stories yet.</p>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {stories.map((story, idx) => (
                 <div
                   key={idx}
-                  className="bg-[#f0f8ff] p-5 rounded-xl shadow-md border-l-4 border-blue-400"
+                  className="bg-base-100 p-5 rounded-xl shadow-md border-l-4 border-blue-400"
                 >
-                  <h3 className="text-lg font-semibold text-blue-800 mb-1">
+                  <h3 className="text-lg font-semibold  mb-1">
                     {story.touristName}'s Experience
                   </h3>
-                  <p className="text-sm text-blue-600 font-medium mb-1">
+                  <p className="text-sm  font-medium mb-1">
                     Package: {story.packageName}
                   </p>
-                  <p className="text-gray-700 text-sm italic">"{story.story}"</p>
+                  <p className=" text-sm italic">"{story.story}"</p>
                 </div>
               ))}
             </div>
@@ -113,7 +113,7 @@ const TourGuideProfile = () => {
       <div className="mt-12 text-center">
         <button
           onClick={() => navigate(-1)}
-          className="bg-white text-[#2a75b3] font-bold px-5 py-2 rounded-full shadow-md hover:bg-blue-100 transition"
+          className="bg-base font-bold px-5 py-2  shadow-md hover:bg-base-200 transition"
         >
           ← Go Back
         </button>
