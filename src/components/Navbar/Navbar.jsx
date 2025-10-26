@@ -139,9 +139,9 @@ const Navbar = () => {
   );
 
   return (
-    <div className="sticky top-0 z-50 w-full backdrop-blur-sm  shadow-md border-b border-gray-400 border-dashed py-1">
+    <div className="sticky top-0 z-50 w-full backdrop-blur-sm  shadow-md border-b-1 border-base-300 border-dashed py-1">
       {/* Top Row */}
-      <div className=" container px-4 md:px-16 lg:px-36 py-6 flex items-center justify-between max-w-full border-b border-gray-400 border-dashed">
+      <div className=" container px-4 md:px-16 lg:px-36 py-6 flex items-center justify-between max-w-full border-b-1 border-base-300 border-dashed">
         <Link to="/" className="flex items-center gap-2" onClick={() => setIsDrawerOpen(false)}>
           <img src={logo} alt="Logo" className="w-10 h-10 rounded-full" />
           <span className="text-xl font-bold font-sans">TOURISM FLOW</span>
@@ -186,7 +186,7 @@ const Navbar = () => {
               onClick={toggleDrawer}
             ></div>
 
-            <div className="fixed top-0 left-0 w-72 h-160 p-6 overflow-y-auto shadow-lg z-50 bg-base-100 backdrop-blur-md rounded-r-lg border-1 border-gray-300">
+            <div className="fixed top-0 left-0 w-72 min-h-screen p-6 overflow-y-auto shadow-lg z-50 bg-base-100 backdrop-blur-md  border-1 border-base-300">
               <div className="flex justify-between items-center mb-6">
                 <button onClick={toggleDrawer}>
                   <IoClose size={28} className="text-navbar-text " />
